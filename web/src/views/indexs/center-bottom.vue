@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { currentGET } from "api";
-import { graphic } from "echarts";
 export default {
   data() {
     return {
@@ -19,153 +17,90 @@ export default {
   },
   props: {},
   mounted() {
-    this.getData();
+    this.initTopology();
   },
   methods: {
-    getData() {
-      this.pageflag = true;
-      currentGET("big6", { companyName: this.companyName }).then((res) => {
-        console.log("安装计划", res);
-        if (res.success) {
-          this.init(res.data);
-        } else {
-          this.pageflag = false;
-          this.$Message({
-            text: res.msg,
-            type: "warning",
-          });
-        }
-      });
-    },
-    init(newData) {
+    initTopology() {
+      // 拓扑示例数据：后续接真实接口时，把 nodes/links 替换即可
+      const nodes = [
+        { id: "site", name: "站点A", category: 0, symbolSize: 46 },
+        { id: "switch", name: "交换机", category: 1, symbolSize: 34 },
+        { id: "clock_main", name: "氢原子钟(主)", category: 2, symbolSize: 32 },
+        { id: "clock_backup", name: "氢原子钟(备)", category: 2, symbolSize: 32 },
+        { id: "phase", name: "相位微调器", category: 3, symbolSize: 30 },
+        { id: "server", name: "授时服务器", category: 4, symbolSize: 30 },
+        { id: "gnss", name: "GNSS天线", category: 5, symbolSize: 28 },
+      ];
+
+      const links = [
+        { source: "site", target: "switch", name: "网络" },
+        { source: "switch", target: "server", name: "以太网" },
+        { source: "switch", target: "phase", name: "控制" },
+        { source: "phase", target: "clock_main", name: "参考" },
+        { source: "phase", target: "clock_backup", name: "参考" },
+        { source: "gnss", target: "server", name: "授时" },
+      ];
+
       this.options = {
         tooltip: {
-          trigger: "axis",
+          trigger: "item",
           backgroundColor: "rgba(0,0,0,.6)",
           borderColor: "rgba(147, 235, 248, .8)",
-          textStyle: {
-            color: "#FFF",
-          },
-          formatter: function (params) {
-            // 添加单位
-            var result = params[0].name + "<br>";
-            params.forEach(function (item) {
-              if (item.value) {
-                if (item.seriesName == "安装率") {
-                  result +=
-                    item.marker +
-                    " " +
-                    item.seriesName +
-                    " : " +
-                    item.value +
-                    "%</br>";
-                } else {
-                  result +=
-                    item.marker +
-                    " " +
-                    item.seriesName +
-                    " : " +
-                    item.value +
-                    "个</br>";
-                }
-              } else {
-                result += item.marker + " " + item.seriesName + " :  - </br>";
-              }
-            });
-            return result;
+          textStyle: { color: "#FFF" },
+          formatter: (p) => {
+            if (p.dataType === "edge") {
+              const label = p.data && p.data.name ? `（${p.data.name}）` : "";
+              return `${p.data.source} → ${p.data.target}${label}`;
+            }
+            return p.name || "";
           },
         },
         legend: {
-          data: ["已安装", "计划安装", "安装率"],
-          textStyle: {
-            color: "#B4B4B4",
-          },
-          top: "0",
+          top: 0,
+          textStyle: { color: "#B4B4B4" },
+          data: ["站点", "网络", "时钟", "调节", "服务器", "GNSS"],
         },
-        grid: {
-          left: "50px",
-          right: "40px",
-          bottom: "30px",
-          top: "20px",
-        },
-        xAxis: {
-          data: newData.category,
-          axisLine: {
-            lineStyle: {
-              color: "#B4B4B4",
-            },
-          },
-          axisTick: {
-            show: false,
-          },
-        },
-        yAxis: [
-          {
-            splitLine: { show: false },
-            axisLine: {
-              lineStyle: {
-                color: "#B4B4B4",
-              },
-            },
-
-            axisLabel: {
-              formatter: "{value}",
-            },
-          },
-          {
-            splitLine: { show: false },
-            axisLine: {
-              lineStyle: {
-                color: "#B4B4B4",
-              },
-            },
-            axisLabel: {
-              formatter: "{value}% ",
-            },
-          },
-        ],
         series: [
           {
-            name: "已安装",
-            type: "bar",
-            barWidth: 10,
-            itemStyle: {
-              borderRadius: 5,
-              color: new graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: "#956FD4" },
-                { offset: 1, color: "#3EACE5" },
-              ]),
+            type: "graph",
+            layout: "force",
+            roam: true,
+            draggable: true,
+            data: nodes,
+            links,
+            categories: [
+              { name: "站点" },
+              { name: "网络" },
+              { name: "时钟" },
+              { name: "调节" },
+              { name: "服务器" },
+              { name: "GNSS" },
+            ],
+            force: {
+              repulsion: 260,
+              edgeLength: [80, 160],
+              gravity: 0.15,
             },
-            data: newData.barData,
-          },
-          {
-            name: "计划安装",
-            type: "bar",
-            barGap: "-100%",
-            barWidth: 10,
-            itemStyle: {
-              borderRadius: 5,
-              color: new graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: "rgba(156,107,211,0.8)" },
-                { offset: 0.2, color: "rgba(156,107,211,0.5)" },
-                { offset: 1, color: "rgba(156,107,211,0.2)" },
-              ]),
+            label: {
+              show: true,
+              color: "#EAEAEA",
+              fontSize: 12,
             },
-            z: -12,
-            data: newData.lineData,
-          },
-          {
-            name: "安装率",
-            type: "line",
-            smooth: true,
-            showAllSymbol: true,
-            symbol: "emptyCircle",
-            symbolSize: 8,
-            yAxisIndex: 1,
-            itemStyle: {
-              color: "#F02FC2",
+            lineStyle: {
+              color: "rgba(0, 253, 250, .55)",
+              width: 2,
+              curveness: 0.15,
             },
-            data: newData.rateData,
+            edgeLabel: {
+              show: true,
+              formatter: "{c}",
+              color: "rgba(255,255,255,.75)",
+              fontSize: 10,
+            },
+            emphasis: {
+              focus: "adjacency",
+              lineStyle: { width: 3, color: "rgba(0, 253, 250, .9)" },
+            },
           },
         ],
       };
