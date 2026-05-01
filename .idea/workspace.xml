@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a8983856-9efe-4535-8461-ee4f35427735" name="变更" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\maven\apache-maven-3.6.3\repository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../maven/apache-maven-3.6.3" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\maven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="34VHGFlGKHoFL2jVQsjNSy51Gs3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/util/http" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\newWork\platform-business\src\main\java\com\horzits\business\util\http" />
+      <recent name="D:\workspace\newWork\platform-business\src\main\resources\mapper\business" />
+      <recent name="D:\workspace\newWork\platform-business\src\main\java\com\horzits\business\service\impl" />
+      <recent name="D:\workspace\newWork\platform-business\src\main\java\com\horzits\business\service" />
+      <recent name="D:\workspace\newWork\platform-business\src\main\java\com\horzits\business\mapper" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="PlatformApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="platform-admin" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.horzits.PlatformApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="a8983856-9efe-4535-8461-ee4f35427735" name="变更" comment="" />
+      <created>1761291724160</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761291724160</updated>
+      <workItem from="1761291725620" duration="54000" />
+      <workItem from="1761291821531" duration="2559000" />
+      <workItem from="1761294954489" duration="5369000" />
+      <workItem from="1761526743477" duration="19517000" />
+      <workItem from="1761557558732" duration="294000" />
+      <workItem from="1761703155714" duration="595000" />
+      <workItem from="1761716821488" duration="4845000" />
+      <workItem from="1761723074490" duration="1839000" />
+      <workItem from="1761727638545" duration="341000" />
+      <workItem from="1761728437480" duration="50000" />
+      <workItem from="1761728510403" duration="241000" />
+      <workItem from="1761729212890" duration="610000" />
+      <workItem from="1761729862568" duration="2136000" />
+      <workItem from="1761786346647" duration="359000" />
+      <workItem from="1761786733436" duration="15003000" />
+      <workItem from="1761872868480" duration="17314000" />
+      <workItem from="1762131654464" duration="15752000" />
+      <workItem from="1762218946812" duration="3474000" />
+      <workItem from="1762304857592" duration="11826000" />
+      <workItem from="1762391098678" duration="2507000" />
+      <workItem from="1762393723357" duration="16799000" />
+      <workItem from="1762477984567" duration="19696000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
