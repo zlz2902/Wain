@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * 工况状态报警表（论文 表4.4）
+ * 工况状态报警表
  *
- * @author horzits
+ * @author ruoyi
  */
 @Mapper
 public interface MonRuleWorkstateMapper {

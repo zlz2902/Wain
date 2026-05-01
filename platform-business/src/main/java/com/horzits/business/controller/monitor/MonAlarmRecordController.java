@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 告警记录表（论文：报文解析后报警信息持久化）
+ * 告警记录表
  *
- * @author horzits
+ * @author ruoyi
  */
 @RestController
 @RequestMapping("/business/monitor/alarmRecord")

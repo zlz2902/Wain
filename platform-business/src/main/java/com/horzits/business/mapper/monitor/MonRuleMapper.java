@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * 告警规则总表（论文 表4.1）
+ * 告警规则总表
  *
- * @author horzits
+ * @author ruoyi
  */
 @Mapper
 public interface MonRuleMapper {

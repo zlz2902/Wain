@@ -11,9 +11,9 @@ import lombok.EqualsAndHashCode;
 import java.util.Date;
 
 /**
- * 告警规则总表（论文 表4.1 规则总表）
+ * 告警规则总表
  *
- * @author horzits
+ * @author ruoyi
  */
 @ApiModel(description = "告警规则总表")
 @Data

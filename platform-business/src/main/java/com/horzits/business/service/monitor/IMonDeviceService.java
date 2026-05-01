@@ -5,9 +5,9 @@ import com.horzits.business.domain.MonDevice;
 import java.util.List;
 
 /**
- * 监控设备信息（论文：设备管理模块）
+ * 监控设备信息
  *
- * @author horzits
+ * @author ruoyi
  */
 public interface IMonDeviceService {
 

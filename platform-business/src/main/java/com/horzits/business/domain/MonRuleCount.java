@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 报警次数累计表（论文 表4.2）
+ * 报警次数累计表
  *
- * @author horzits
+ * @author ruoyi
  */
 @ApiModel(description = "报警次数累计表")
 @Data

@@ -8,9 +8,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 通讯超时规则场景表（论文 表4.5 通讯超时报警表）
+ * 通讯超时规则场景表
  *
- * @author horzits
+ * @author ruoyi
  */
 @ApiModel(description = "通讯超时规则场景表")
 @Data

@@ -5,9 +5,412 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8983856-9efe-4535-8461-ee4f35427735" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/platform-admin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/src/main/java/com/horzits/web/controller/monitor/CacheController.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-admin/src/main/java/com/horzits/web/controller/monitor/CacheController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platform-admin/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/platform-admin/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/src/main/resources/application-fat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/platform-admin/src/main/resources/application-fat.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/META-INF/spring-devtools.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/application-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/application-fat.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/banner.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/PlatformApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/PlatformServletInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/common/CaptchaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/common/CommonController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/monitor/CacheController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/monitor/ServerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/monitor/SysLogininforController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/monitor/SysOperlogController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/monitor/SysUserOnlineController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysConfigController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysDeptController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysDictDataController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysDictTypeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysIndexController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysLoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysMenuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysNoticeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysPostController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysProfileController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysRegisterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/controller/system/SysUserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/core/config/DozerBeanMapperConfigure.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/com/horzits/web/core/config/SwaggerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/i18n/messages.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/target/classes/mybatis/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonAlarmRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonAlarmRecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonDeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonDeviceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleCommTimeoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleCommTimeoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleCountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleCountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleThresholdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleThresholdController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleWorkstateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/controller/monitor/MonRuleWorkstateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonAlarmRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonAlarmRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRuleCommTimeout.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRuleCommTimeout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRuleCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRuleCount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRuleThreshold.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRuleThreshold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRuleWorkstate.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/domain/MonRuleWorkstate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonDeviceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonDeviceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonRuleCommTimeoutMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonRuleCommTimeoutMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonRuleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonRuleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonRuleThresholdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonRuleThresholdMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonRuleWorkstateMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/mapper/monitor/MonRuleWorkstateMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonAlarmRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonAlarmRecordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonDeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonDeviceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleCommTimeoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleCommTimeoutService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleCountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleCountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleThresholdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleThresholdService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleWorkstateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-business/src/main/java/com/horzits/business/service/monitor/IMonRuleWorkstateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/controller/monitor/MonAlarmRecordController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/controller/monitor/MonDeviceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/controller/monitor/MonRuleCommTimeoutController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/controller/monitor/MonRuleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/controller/monitor/MonRuleCountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/controller/monitor/MonRuleThresholdController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/controller/monitor/MonRuleWorkstateController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/domain/MonAlarmRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/domain/MonDevice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/domain/MonRule.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/domain/MonRuleCommTimeout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/domain/MonRuleCount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/domain/MonRuleThreshold.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/domain/MonRuleWorkstate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/mapper/monitor/MonAlarmRecordMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/mapper/monitor/MonDeviceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/mapper/monitor/MonRuleCommTimeoutMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/mapper/monitor/MonRuleCountMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/mapper/monitor/MonRuleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/mapper/monitor/MonRuleThresholdMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/mapper/monitor/MonRuleWorkstateMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/IMonAlarmRecordService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/IMonDeviceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/IMonRuleCommTimeoutService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/IMonRuleCountService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/IMonRuleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/IMonRuleThresholdService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/IMonRuleWorkstateService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/impl/MonAlarmRecordServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/impl/MonDeviceServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/impl/MonRuleCommTimeoutServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/impl/MonRuleCountServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/impl/MonRuleServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/impl/MonRuleThresholdServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/com/horzits/business/service/monitor/impl/MonRuleWorkstateServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/mapper/business/monitor/MonAlarmRecordMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/mapper/business/monitor/MonDeviceMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/mapper/business/monitor/MonRuleCommTimeoutMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/mapper/business/monitor/MonRuleCountMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/mapper/business/monitor/MonRuleMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/mapper/business/monitor/MonRuleThresholdMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-business/target/classes/mapper/business/monitor/MonRuleWorkstateMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/platform-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/src/main/java/com/horzits/common/core/redis/RedisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/platform-common/src/main/java/com/horzits/common/core/redis/RedisCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/TripleCodingPasswordEncoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/Anonymous.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/DataScope.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/DataSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/Excel$ColumnType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/Excel$Type.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/Excel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/Excels.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/Log.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/RateLimiter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/RepeatSubmit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/annotation/Sensitive.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/config/RuoYiConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/config/serializer/SensitiveJsonSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/constant/CacheConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/constant/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/constant/GenConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/constant/HttpStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/constant/ScheduleConstants$Status.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/constant/ScheduleConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/constant/UserConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/controller/BaseController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/controller/BaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/AjaxResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/AppRestResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/BaseEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/TreeEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/TreeSelect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/entity/SysDept.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/entity/SysDictData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/entity/SysDictType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/entity/SysMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/entity/SysRole.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/entity/SysUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/model/LoginBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/model/LoginUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/domain/model/RegisterBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/page/PageDomain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/page/TableDataInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/page/TableSupport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/redis/RedisCache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/text/CharsetKit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/text/Convert.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/core/text/StrFormatter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/enums/BusinessStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/enums/BusinessType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/enums/DataSourceType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/enums/DesensitizedType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/enums/HttpMethod.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/enums/LimitType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/enums/OperatorType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/enums/UserStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/CustomException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/DemoModeException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/GlobalException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/ServiceException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/UtilException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/base/BaseException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/FileException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/FileNameLengthLimitExceededException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/FileSizeLimitExceededException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/FileUploadException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/InvalidExtensionException$InvalidFlashExtensionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/InvalidExtensionException$InvalidImageExtensionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/InvalidExtensionException$InvalidMediaExtensionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/InvalidExtensionException$InvalidVideoExtensionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/file/InvalidExtensionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/job/TaskException$Code.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/job/TaskException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/user/BlackListException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/user/CaptchaException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/user/CaptchaExpireException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/user/UserException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/user/UserNotExistsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/user/UserPasswordNotMatchException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/exception/user/UserPasswordRetryLimitExceedException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/filter/PropertyPreExcludeFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/filter/RepeatableFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/filter/RepeatedlyRequestWrapper$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/filter/RepeatedlyRequestWrapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/filter/XssFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/filter/XssHttpServletRequestWrapper$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/filter/XssHttpServletRequestWrapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/AOSCodec.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/Arith.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/DateUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/DesensitizedUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/DictUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/ExceptionUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/JdbcTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/LogUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/MessageUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/PageUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/SecurityUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/ServletUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/StringUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/Threads.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/bean/BeanUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/bean/BeanValidators.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/file/FileTypeUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/file/FileUploadUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/file/FileUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/file/ImageUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/file/MimeTypeUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/html/EscapeUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/html/HTMLFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/http/HttpHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/http/HttpUtils$TrustAnyHostnameVerifier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/http/HttpUtils$TrustAnyTrustManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/http/HttpUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/ip/AddressUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/ip/IpUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/poi/ExcelHandlerAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/poi/ExcelUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/reflect/ReflectUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/sign/Base64.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/sign/Md5Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/spring/SpringUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/sql/SqlUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/uuid/IdUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/uuid/Seq.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/uuid/UUID$Holder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/utils/uuid/UUID.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/xss/Xss.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-common/target/classes/com/horzits/common/xss/XssValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/src/main/java/com/horzits/framework/aspectj/RateLimiterAspect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/src/main/java/com/horzits/framework/config/FastJson2JsonRedisSerializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/src/main/java/com/horzits/framework/config/RedisConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/aspectj/DataScopeAspect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/aspectj/DataSourceAspect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/aspectj/LogAspect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/aspectj/RateLimiterAspect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/aspectj/RepeatSubmitAspect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/ApplicationConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/CaptchaConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/DruidConfig$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/DruidConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/FastJson2JsonRedisSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/FilterConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/I18nConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/JacksonConf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/KaptchaTextCreator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/MybatisPlusConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/RedisConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/ResourcesConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/ServerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/ThreadPoolConfig$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/ThreadPoolConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/WebConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/properties/DruidProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/config/properties/PermitAllUrlProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/datasource/DynamicDataSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/datasource/DynamicDataSourceContextHolder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/interceptor/RepeatSubmitInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/interceptor/impl/SameUrlDataInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/manager/AsyncManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/manager/ShutdownManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/manager/factory/AsyncFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/manager/factory/AsyncFactory$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/manager/factory/AsyncFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/security/context/AuthenticationContextHolder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/security/context/PermissionContextHolder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/security/filter/JwtAuthenticationTokenFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/security/handle/AuthenticationEntryPointImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/security/handle/LogoutSuccessHandlerImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/controller/ReportController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/domain/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/domain/server/Cpu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/domain/server/Jvm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/domain/server/Mem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/domain/server/Sys.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/domain/server/SysFile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/exception/GlobalExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/service/PermissionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/service/SysLoginService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/service/SysPasswordService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/service/SysPermissionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/service/SysRegisterService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/service/TokenService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-framework/target/classes/com/horzits/framework/web/service/UserDetailsServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/config/GenConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/controller/GenController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/domain/GenTable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/domain/GenTableColumn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/mapper/GenTableColumnMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/mapper/GenTableMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/service/GenTableColumnServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/service/GenTableServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/service/IGenTableColumnService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/service/IGenTableService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/util/GenUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/util/VelocityInitializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/com/horzits/generator/util/VelocityUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/generator.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/mapper/generator/GenTableColumnMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/mapper/generator/GenTableMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/java/controller.java.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/java/domain.java.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/java/mapper.java.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/java/service.java.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/java/serviceImpl.java.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/java/sub-domain.java.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/java/vo.java.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/js/api.js.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/sql/sql.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/vue/index-tree.vue.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/vue/index.vue.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/vue/v3/index-tree.vue.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/vue/v3/index.vue.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-generator/target/classes/vm/xml/mapper.xml.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/controller/SysJobController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/controller/SysJobLogController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/domain/SysJob.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/domain/SysJobLog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/mapper/SysJobLogMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/mapper/SysJobMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/service/ISysJobLogService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/service/ISysJobService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/service/impl/SysJobLogServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/service/impl/SysJobServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/task/RyTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/util/AbstractQuartzJob.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/util/CronUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/util/JobInvokeUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/util/QuartzDisallowConcurrentExecution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/util/QuartzJobExecution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/com/horzits/quartz/util/ScheduleUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/mapper/quartz/SysJobLogMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-quartz/target/classes/mapper/quartz/SysJobMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysCache.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysLogininfor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysNotice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysOperLog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysPost.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysRoleDept.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysRoleMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysUserOnline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysUserPost.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/SysUserRole.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/vo/MetaVo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/domain/vo/RouterVo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysConfigMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysDeptMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysDictDataMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysDictTypeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysLogininforMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysMenuMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysNoticeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysOperLogMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysPostMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysRoleDeptMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysRoleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysRoleMenuMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysUserMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysUserPostMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/mapper/SysUserRoleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysConfigService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysDeptService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysDictDataService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysDictTypeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysLogininforService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysMenuService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysNoticeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysOperLogService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysPostService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysRoleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysUserOnlineService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/ISysUserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysConfigServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysDeptServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysDictDataServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysDictTypeServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysLogininforServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysMenuServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysNoticeServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysOperLogServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysPostServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysRoleServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysUserOnlineServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/com/horzits/system/service/impl/SysUserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysConfigMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysDeptMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysDictDataMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysDictTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysLogininforMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysMenuMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysNoticeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysOperLogMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysPostMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysRoleDeptMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysRoleMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysRoleMenuMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysUserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysUserPostMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-system/target/classes/mapper/system/SysUserRoleMapper.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +427,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "smallway233"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;smallway233&quot;
   }
-}]]></component>
+}</component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
       <filtered-out-file-type name="LOCAL_BRANCH" />
@@ -38,12 +441,12 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/zlz2902/Wain.git",
-    "accountId": "b91b615a-f220-4f54-9f35-c71ae53fad26"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/zlz2902/Wain.git&quot;,
+    &quot;accountId&quot;: &quot;b91b615a-f220-4f54-9f35-c71ae53fad26&quot;
   }
-}]]></component>
+}</component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
@@ -62,42 +465,40 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="customMavenHome" value="$PROJECT_DIR$/../../maven/apache-maven-3.6.3" />
         <option name="localRepository" value="D:\maven\apache-maven-3.6.3\repository" />
-        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
         <option name="userSettingsFile" value="D:\maven\apache-maven-3.6.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="34VHGFlGKHoFL2jVQsjNSy51Gs3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.PlatformApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/桌面/Wain/web/package.json",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.后台管理.executor": "Run",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.PlatformApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/桌面/Wain/web/package.json&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.后台管理.executor&quot;: &quot;Run&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -110,7 +511,7 @@
       <recent name="D:\workspace\newWork\platform-business\src\main\java\com\horzits\business\mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.后台管理">
+  <component name="RunManager" selected="Spring Boot.PlatformApplication">
     <configuration name="PlatformApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="platform-admin" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.horzits.PlatformApplication" />
@@ -140,7 +541,6 @@
     </configuration>
     <list>
       <item itemvalue="npm.后台管理" />
-      <item itemvalue="npm.大屏" />
       <item itemvalue="Spring Boot.PlatformApplication" />
     </list>
   </component>

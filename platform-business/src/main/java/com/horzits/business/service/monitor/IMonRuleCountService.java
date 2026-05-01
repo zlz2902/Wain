@@ -5,9 +5,9 @@ import com.horzits.business.domain.MonRuleCount;
 import java.util.List;
 
 /**
- * 报警次数累计表（论文 表4.2）
+ * 报警次数累计表
  *
- * @author horzits
+ * @author ruoyi
  */
 public interface IMonRuleCountService {
 

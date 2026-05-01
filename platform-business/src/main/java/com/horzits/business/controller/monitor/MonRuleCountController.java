@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 报警次数累计表（论文 表4.2）
+ * 报警次数累计表
  *
- * @author horzits
+ * @author ruoyi
  */
 @RestController
 @RequestMapping("/business/monitor/ruleCount")

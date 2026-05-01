@@ -5,9 +5,9 @@ import com.horzits.business.domain.MonRuleWorkstate;
 import java.util.List;
 
 /**
- * 工况状态报警表（论文 表4.4）
+ * 工况状态报警表
  *
- * @author horzits
+ * @author ruoyi
  */
 public interface IMonRuleWorkstateService {
 

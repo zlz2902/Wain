@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 监控设备信息（论文：设备管理模块）
+ * 监控设备信息
  *
- * @author horzits
+ * @author ruoyi
  */
 @RestController
 @RequestMapping("/business/monitor/device")

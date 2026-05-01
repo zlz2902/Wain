@@ -3,13 +3,12 @@ package com.horzits.web.controller.monitor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisCallback;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.horzits.common.constant.CacheConstants;
+import com.horzits.common.core.redis.RedisCache;
 import com.horzits.common.core.domain.AjaxResult;
-import com.horzits.common.utils.StringUtils;
 import com.horzits.system.domain.SysCache;
 
 /**
@@ -31,7 +30,7 @@ import com.horzits.system.domain.SysCache;
 public class CacheController
 {
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisCache redisCache;
 
     private final static List<SysCache> caches = new ArrayList<SysCache>();
     {
@@ -48,22 +47,17 @@ public class CacheController
     @GetMapping()
     public AjaxResult getInfo() throws Exception
     {
-        Properties info = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info());
-        Properties commandStats = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info("commandstats"));
-        Object dbSize = redisTemplate.execute((RedisCallback<Object>) connection -> connection.dbSize());
+        // 去除 Redis 依赖后，缓存改为本地内存实现，这里返回简化信息以兼容前端页面
+        Properties info = new Properties();
+        info.put("cache", "in-memory");
+        Object dbSize = redisCache.keys("*").size();
 
         Map<String, Object> result = new HashMap<>(3);
         result.put("info", info);
         result.put("dbSize", dbSize);
 
         List<Map<String, String>> pieList = new ArrayList<>();
-        commandStats.stringPropertyNames().forEach(key -> {
-            Map<String, String> data = new HashMap<>(2);
-            String property = commandStats.getProperty(key);
-            data.put("name", StringUtils.removeStart(key, "cmdstat_"));
-            data.put("value", StringUtils.substringBetween(property, "calls=", ",usec"));
-            pieList.add(data);
-        });
+        // commandStats 仅用于 Redis 监控，内存缓存不提供命令统计
         result.put("commandStats", pieList);
         return AjaxResult.success(result);
     }
@@ -79,7 +73,7 @@ public class CacheController
     @GetMapping("/getKeys/{cacheName}")
     public AjaxResult getCacheKeys(@PathVariable String cacheName)
     {
-        Set<String> cacheKeys = redisTemplate.keys(cacheName + "*");
+        Set<String> cacheKeys = new HashSet<>(redisCache.keys(cacheName + "*"));
         return AjaxResult.success(cacheKeys);
     }
 
@@ -87,7 +81,8 @@ public class CacheController
     @GetMapping("/getValue/{cacheName}/{cacheKey}")
     public AjaxResult getCacheValue(@PathVariable String cacheName, @PathVariable String cacheKey)
     {
-        String cacheValue = redisTemplate.opsForValue().get(cacheKey);
+        Object cacheValueObj = redisCache.getCacheObject(cacheKey);
+        String cacheValue = cacheValueObj == null ? null : String.valueOf(cacheValueObj);
         SysCache sysCache = new SysCache(cacheName, cacheKey, cacheValue);
         return AjaxResult.success(sysCache);
     }
@@ -96,8 +91,8 @@ public class CacheController
     @DeleteMapping("/clearCacheName/{cacheName}")
     public AjaxResult clearCacheName(@PathVariable String cacheName)
     {
-        Collection<String> cacheKeys = redisTemplate.keys(cacheName + "*");
-        redisTemplate.delete(cacheKeys);
+        Collection<String> cacheKeys = redisCache.keys(cacheName + "*");
+        redisCache.deleteObject(cacheKeys);
         return AjaxResult.success();
     }
 
@@ -105,7 +100,7 @@ public class CacheController
     @DeleteMapping("/clearCacheKey/{cacheKey}")
     public AjaxResult clearCacheKey(@PathVariable String cacheKey)
     {
-        redisTemplate.delete(cacheKey);
+        redisCache.deleteObject(cacheKey);
         return AjaxResult.success();
     }
 
@@ -113,8 +108,8 @@ public class CacheController
     @DeleteMapping("/clearCacheAll")
     public AjaxResult clearCacheAll()
     {
-        Collection<String> cacheKeys = redisTemplate.keys("*");
-        redisTemplate.delete(cacheKeys);
+        Collection<String> cacheKeys = redisCache.keys("*");
+        redisCache.deleteObject(cacheKeys);
         return AjaxResult.success();
     }
 }

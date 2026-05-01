@@ -5,9 +5,9 @@ import com.horzits.business.domain.MonRuleThreshold;
 import java.util.List;
 
 /**
- * 阈值范围规则场景表（论文 表4.3）
+ * 阈值范围规则场景表
  *
- * @author horzits
+ * @author ruoyi
  */
 public interface IMonRuleThresholdService {
 

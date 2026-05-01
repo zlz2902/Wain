@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 告警规则总表（论文 表4.1 规则总表）
+ * 告警规则总表
  *
- * @author horzits
+ * @author ruoyi
  */
 @RestController
 @RequestMapping("/business/monitor/rule")

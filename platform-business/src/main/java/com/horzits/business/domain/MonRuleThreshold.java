@@ -10,9 +10,9 @@ import lombok.EqualsAndHashCode;
 import java.math.BigDecimal;
 
 /**
- * 阈值范围规则场景表（论文 表4.3）
+ * 阈值范围规则场景表
  *
- * @author horzits
+ * @author ruoyi
  */
 @ApiModel(description = "阈值范围规则场景表")
 @Data

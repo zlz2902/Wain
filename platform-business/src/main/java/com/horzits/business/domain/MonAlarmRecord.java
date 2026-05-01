@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 告警记录表（论文：报文解析后报警信息持久化）
+ * 告警记录表
  *
- * @author horzits
+ * @author ruoyi
  */
 @ApiModel(description = "告警记录表")
 @Data

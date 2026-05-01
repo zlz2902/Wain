@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 通讯超时规则场景表（论文 表4.5 通讯超时报警表）
+ * 通讯超时规则场景表
  *
- * @author horzits
+ * @author ruoyi
  */
 @RestController
 @RequestMapping("/business/monitor/ruleCommTimeout")

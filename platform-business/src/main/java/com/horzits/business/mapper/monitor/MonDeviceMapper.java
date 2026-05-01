@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * 监控设备信息（论文：设备管理模块）
+ * 监控设备信息
  *
- * @author horzits
+ * @author ruoyi
  */
 @Mapper
 public interface MonDeviceMapper {

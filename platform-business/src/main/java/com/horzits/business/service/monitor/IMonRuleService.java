@@ -5,9 +5,9 @@ import com.horzits.business.domain.MonRule;
 import java.util.List;
 
 /**
- * 告警规则总表（论文 表4.1）
+ * 告警规则总表
  *
- * @author horzits
+ * @author ruoyi
  */
 public interface IMonRuleService {
 

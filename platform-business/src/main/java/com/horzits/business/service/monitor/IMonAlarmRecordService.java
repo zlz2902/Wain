@@ -5,9 +5,9 @@ import com.horzits.business.domain.MonAlarmRecord;
 import java.util.List;
 
 /**
- * 告警记录表（论文：报文解析持久化）
+ * 告警记录表
  *
- * @author horzits
+ * @author ruoyi
  */
 public interface IMonAlarmRecordService {
 
