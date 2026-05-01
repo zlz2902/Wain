@@ -2,3 +2,5 @@
 # build output
 target/
 **/target/
+
+# IDE local state (never commit).idea/workspace.xml
