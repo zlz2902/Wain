@@ -53,7 +53,7 @@ spring:
     druid:
       # 唯一数据源（与 Navicat「1300」连接一致；库名请按实际库修改 URL 中 /baseform）
       master:
-        url: jdbc:mysql://mysql.smallway.top:26021/baseform?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://mysql.smallway.top:26021/warring?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
         username: warring
         password: fOIdXYVageVLU4
       # 初始连接数

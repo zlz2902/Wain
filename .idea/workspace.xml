@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8983856-9efe-4535-8461-ee4f35427735" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform-admin/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/platform-admin/src/main/resources/application-dev.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,16 +79,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.PlatformApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/桌面/Wain",
+    "last_opened_file_path": "F:/桌面/Wain/web/package.json",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.后台管理.executor": "Run",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -102,7 +110,7 @@
       <recent name="D:\workspace\newWork\platform-business\src\main\java\com\horzits\business\mapper" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.后台管理">
     <configuration name="PlatformApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="platform-admin" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.horzits.PlatformApplication" />
@@ -110,6 +118,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="后台管理" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/platform-ui/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="大屏" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.后台管理" />
+      <item itemvalue="npm.大屏" />
+      <item itemvalue="Spring Boot.PlatformApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -149,7 +182,7 @@
       <workItem from="1762391098678" duration="2507000" />
       <workItem from="1762393723357" duration="16799000" />
       <workItem from="1762477984567" duration="19696000" />
-      <workItem from="1777628053813" duration="317000" />
+      <workItem from="1777628053813" duration="2149000" />
     </task>
     <servers />
   </component>
