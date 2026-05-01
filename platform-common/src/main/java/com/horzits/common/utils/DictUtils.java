@@ -2,7 +2,6 @@ package com.horzits.common.utils;
 
 import java.util.Collection;
 import java.util.List;
-import com.alibaba.fastjson2.JSONArray;
 import com.horzits.common.constant.CacheConstants;
 import com.horzits.common.core.domain.entity.SysDictData;
 import com.horzits.common.core.redis.RedisCache;
@@ -39,11 +38,19 @@ public class DictUtils
      */
     public static List<SysDictData> getDictCache(String key)
     {
-        JSONArray arrayCache = SpringUtils.getBean(RedisCache.class).getCacheObject(getCacheKey(key));
-        if (StringUtils.isNotNull(arrayCache))
+        Object cache = SpringUtils.getBean(RedisCache.class).getCacheObject(getCacheKey(key));
+        if (StringUtils.isNull(cache))
         {
-            return arrayCache.toList(SysDictData.class);
+            return null;
         }
+        // 兼容历史/异常数据：有些场景会把 List 误当作 JSONArray 读取
+        if (cache instanceof List)
+        {
+            @SuppressWarnings("unchecked")
+            List<SysDictData> dictDatas = (List<SysDictData>) cache;
+            return dictDatas;
+        }
+        // 若确实存的是 JSON 字符串（或其它可解析对象），可按需在此扩展解析逻辑
         return null;
     }
 

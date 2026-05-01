@@ -9,28 +9,22 @@
     <ul class="user_Overview flex" v-if="pageflag">
         <li class="user_Overview-item" style="color: #00fdfa">
             <div class="user_Overview_nums allnum ">
-                <dv-digital-flop :config="config" style="width:100%;height:100%;" />
+                <dv-digital-flop :config="tempConfig" style="width:100%;height:100%;" />
             </div>
-            <p>总设备数</p>
+            <p>平均温度</p>
         </li>
         <li class="user_Overview-item" style="color: #07f7a8">
             <div class="user_Overview_nums online">
-                <dv-digital-flop :config="onlineconfig" style="width:100%;height:100%;" />
+                <dv-digital-flop :config="humidityConfig" style="width:100%;height:100%;" />
             </div>
-            <p>在线数</p>
+            <p>平均湿度</p>
         </li>
         <li class="user_Overview-item" style="color: #e3b337">
             <div class="user_Overview_nums offline">
-                <dv-digital-flop :config="offlineconfig" style="width:100%;height:100%;" />
+                <dv-digital-flop :config="pressureConfig" style="width:100%;height:100%;" />
 
             </div>
-            <p>掉线数</p>
-        </li>
-        <li class="user_Overview-item" style="color: #f5023d">
-            <div class="user_Overview_nums laramnum">
-                <dv-digital-flop :config="laramnumconfig" style="width:100%;height:100%;" />
-            </div>
-            <p>告警次数</p>
+            <p>平均气压</p>
         </li>
     </ul>
     <Reacquire v-else @onclick="getData" line-height="200px">
@@ -47,16 +41,11 @@ export default {
     data() {
         return {
             options: {},
-            userOverview: {
-                alarmNum: 0,
-                offlineNum: 0,
-                onlineNum: 0,
-                totalNum: 0,
-            },
+            overview: {},
             pageflag: true,
             timer: null,
-            config: {
-                number: [100],
+            tempConfig: {
+                number: [0],
                 content: '{nt}',
                 style: {
                     ...style,
@@ -64,7 +53,7 @@ export default {
                     fill: "#00fdfa",
                 },
             },
-            onlineconfig: {
+            humidityConfig: {
                 number: [0],
                 content: '{nt}',
                 style: {
@@ -73,7 +62,7 @@ export default {
                     fill: "#07f7a8",
                 },
             },
-            offlineconfig: {
+            pressureConfig: {
                 number: [0],
                 content: '{nt}',
                 style: {
@@ -82,15 +71,6 @@ export default {
                     fill: "#e3b337",
                 },
             },
-            laramnumconfig: {
-                number: [0],
-                content: '{nt}',
-                style: {
-                    ...style,
-                    // stroke: "#f5023d",
-                    fill: "#f5023d",
-                },
-            }
 
         };
     },
@@ -118,27 +98,11 @@ export default {
         getData() {
             this.pageflag = true;
             currentGET("big2").then((res) => {
-                if (!this.timer) {
-                    console.log("设备总览", res);
-                }
                 if (res.success) {
-                    this.userOverview = res.data;
-                    this.onlineconfig = {
-                        ...this.onlineconfig,
-                        number: [res.data.onlineNum]
-                    }
-                    this.config = {
-                        ...this.config,
-                        number: [res.data.totalNum]
-                    }
-                    this.offlineconfig = {
-                        ...this.offlineconfig,
-                        number: [res.data.offlineNum]
-                    }
-                    this.laramnumconfig = {
-                        ...this.laramnumconfig,
-                        number: [res.data.alarmNum]
-                    }
+                    this.overview = res.data || {};
+                    this.tempConfig = { ...this.tempConfig, number: [this.overview.temperature != null ? this.overview.temperature : 0] };
+                    this.humidityConfig = { ...this.humidityConfig, number: [this.overview.humidity != null ? this.overview.humidity : 0] };
+                    this.pressureConfig = { ...this.pressureConfig, number: [this.overview.pressure != null ? this.overview.pressure : 0] };
                     this.switper()
                 } else {
                     this.pageflag = false;
@@ -214,13 +178,6 @@ export default {
         .offline {
             &::before {
                 background-image: url("../../assets/img/left_top_huang.png");
-
-            }
-        }
-
-        .laramnum {
-            &::before {
-                background-image: url("../../assets/img/left_top_hong.png");
 
             }
         }

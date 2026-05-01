@@ -28,14 +28,11 @@ function countDeviceNum() {
     const a = Mock.mock({
         success: true,
         data: {
-            alarmNum: '@integer(100, 1000)',
-            offlineNum: '@integer(0, 50)',
-            totalNum:698
+            temperature: '@float(15, 35, 1, 1)',
+            humidity: '@integer(20, 90)',
+            pressure: '@integer(980, 1050)'
         }
     })
-    a.data.onlineNum=a.data.totalNum-a.data.offlineNum
-
-
     return a
 }
 
