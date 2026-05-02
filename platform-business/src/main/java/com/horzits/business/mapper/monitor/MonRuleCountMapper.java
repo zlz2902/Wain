@@ -18,7 +18,7 @@ public interface MonRuleCountMapper {
 
     List<MonRuleCount> selectMonRuleCountList(MonRuleCount query);
 
-    MonRuleCount selectByRuleIdAndDeviceId(@Param("ruleId") Long ruleId, @Param("deviceId") Long deviceId);
+    MonRuleCount selectByRuleIdAndDeviceNo(@Param("ruleId") Long ruleId, @Param("deviceNo") String deviceNo);
 
     int insertMonRuleCount(MonRuleCount row);
 

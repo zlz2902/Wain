@@ -3,96 +3,57 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.horzits.business.mapper.monitor.MonRuleThresholdMapper">
 
-    <resultMap id="Result" type="MonRuleThreshold">
-        <id property="thresholdId" column="threshold_id"/>
+    <resultMap id="MonRuleThresholdResult" type="MonRuleThreshold">
+        <id property="thresholdId" column="id"/>
         <result property="ruleId" column="rule_id"/>
-        <result property="metricCode" column="metric_code"/>
-        <result property="metricName" column="metric_name"/>
+        <result property="resourceType" column="resource_type"/>
         <result property="minValue" column="min_value"/>
         <result property="maxValue" column="max_value"/>
-        <result property="alarmLevel" column="alarm_level"/>
-        <result property="createBy" column="create_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="updateTime" column="update_time"/>
-        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectVo">
-        select threshold_id, rule_id, metric_code, metric_name, min_value, max_value, alarm_level,
-               create_by, create_time, update_by, update_time, remark from mon_rule_threshold
+        select id, rule_id, resource_type, min_value, max_value from threshold_rule_table
     </sql>
 
-    <select id="selectMonRuleThresholdById" resultMap="Result">
-        <include refid="selectVo"/> where threshold_id = #{thresholdId}
+    <select id="selectMonRuleThresholdById" resultMap="MonRuleThresholdResult">
+        <include refid="selectVo"/> where id = #{thresholdId}
     </select>
 
-    <select id="selectMonRuleThresholdList" parameterType="MonRuleThreshold" resultMap="Result">
+    <select id="selectMonRuleThresholdList" parameterType="MonRuleThreshold" resultMap="MonRuleThresholdResult">
         <include refid="selectVo"/>
         <where>
             <if test="ruleId != null">and rule_id = #{ruleId}</if>
-            <if test="metricCode != null and metricCode != ''">and metric_code = #{metricCode}</if>
-            <if test="metricName != null and metricName != ''">and metric_name like concat('%', #{metricName}, '%')</if>
+            <if test="resourceType != null and resourceType != ''">and resource_type = #{resourceType}</if>
         </where>
-        order by threshold_id desc
+        order by id desc
     </select>
 
     <insert id="insertMonRuleThreshold" parameterType="MonRuleThreshold" useGeneratedKeys="true" keyProperty="thresholdId">
-        insert into mon_rule_threshold
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="ruleId != null">rule_id,</if>
-            <if test="metricCode != null">metric_code,</if>
-            <if test="metricName != null">metric_name,</if>
-            <if test="minValue != null">min_value,</if>
-            <if test="maxValue != null">max_value,</if>
-            <if test="alarmLevel != null">alarm_level,</if>
-            <if test="createBy != null">create_by,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="updateBy != null">update_by,</if>
-            <if test="updateTime != null">update_time,</if>
-            <if test="remark != null">remark,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="ruleId != null">#{ruleId},</if>
-            <if test="metricCode != null">#{metricCode},</if>
-            <if test="metricName != null">#{metricName},</if>
-            <if test="minValue != null">#{minValue},</if>
-            <if test="maxValue != null">#{maxValue},</if>
-            <if test="alarmLevel != null">#{alarmLevel},</if>
-            <if test="createBy != null">#{createBy},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateBy != null">#{updateBy},</if>
-            <if test="updateTime != null">#{updateTime},</if>
-            <if test="remark != null">#{remark},</if>
-        </trim>
+        insert into threshold_rule_table (rule_id, resource_type, min_value, max_value)
+        values (#{ruleId}, #{resourceType}, #{minValue}, #{maxValue})
     </insert>
 
     <update id="updateMonRuleThreshold" parameterType="MonRuleThreshold">
-        update mon_rule_threshold
+        update threshold_rule_table
         <trim prefix="set" suffixOverrides=",">
             <if test="ruleId != null">rule_id = #{ruleId},</if>
-            <if test="metricCode != null">metric_code = #{metricCode},</if>
-            <if test="metricName != null">metric_name = #{metricName},</if>
+            <if test="resourceType != null">resource_type = #{resourceType},</if>
             <if test="minValue != null">min_value = #{minValue},</if>
             <if test="maxValue != null">max_value = #{maxValue},</if>
-            <if test="alarmLevel != null">alarm_level = #{alarmLevel},</if>
-            <if test="updateBy != null">update_by = #{updateBy},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-            <if test="remark != null">remark = #{remark},</if>
         </trim>
-        where threshold_id = #{thresholdId}
+        where id = #{thresholdId}
     </update>
 
     <delete id="deleteMonRuleThresholdById">
-        delete from mon_rule_threshold where threshold_id = #{thresholdId}
+        delete from threshold_rule_table where id = #{thresholdId}
     </delete>
 
     <delete id="deleteMonRuleThresholdByIds">
-        delete from mon_rule_threshold where threshold_id in
+        delete from threshold_rule_table where id in
         <foreach collection="array" item="id" open="(" separator="," close=")">#{id}</foreach>
     </delete>
 
     <delete id="deleteMonRuleThresholdByRuleId">
-        delete from mon_rule_threshold where rule_id = #{ruleId}
+        delete from threshold_rule_table where rule_id = #{ruleId}
     </delete>
 </mapper>

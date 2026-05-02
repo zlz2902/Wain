@@ -1,11 +1,9 @@
 package com.horzits.business.service.monitor.impl;
 
 import com.horzits.business.domain.MonRule;
-import com.horzits.business.mapper.monitor.MonRuleCommTimeoutMapper;
 import com.horzits.business.mapper.monitor.MonRuleCountMapper;
 import com.horzits.business.mapper.monitor.MonRuleMapper;
 import com.horzits.business.mapper.monitor.MonRuleThresholdMapper;
-import com.horzits.business.mapper.monitor.MonRuleWorkstateMapper;
 import com.horzits.business.service.monitor.IMonRuleService;
 import com.horzits.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * 告警规则总表
- *
- * @author horzits
+ * 告警规则 rules_table
  */
 @Service
 public class MonRuleServiceImpl implements IMonRuleService {
@@ -26,10 +22,6 @@ public class MonRuleServiceImpl implements IMonRuleService {
     private MonRuleMapper monRuleMapper;
     @Autowired
     private MonRuleThresholdMapper monRuleThresholdMapper;
-    @Autowired
-    private MonRuleWorkstateMapper monRuleWorkstateMapper;
-    @Autowired
-    private MonRuleCommTimeoutMapper monRuleCommTimeoutMapper;
     @Autowired
     private MonRuleCountMapper monRuleCountMapper;
 
@@ -45,16 +37,20 @@ public class MonRuleServiceImpl implements IMonRuleService {
 
     @Override
     public int insertMonRule(MonRule monRule) {
-        if (monRule.getDelFlag() == null) {
-            monRule.setDelFlag("0");
+        if (monRule.getIsEnabled() == null) {
+            monRule.setIsEnabled(1);
         }
-        if (monRule.getEnabled() == null) {
-            monRule.setEnabled("1");
+        if (monRule.getAlarmLevel() == null) {
+            monRule.setAlarmLevel(1);
         }
-        if (monRule.getIsCount() == null) {
-            monRule.setIsCount("0");
+        if (monRule.getAccumulateCount() == null) {
+            monRule.setAccumulateCount(1);
+        }
+        if (monRule.getSceneType() == null) {
+            monRule.setSceneType(1);
         }
         monRule.setCreateTime(DateUtils.getNowDate());
+        monRule.setUpdateTime(monRule.getCreateTime());
         return monRuleMapper.insertMonRule(monRule);
     }
 
@@ -69,8 +65,6 @@ public class MonRuleServiceImpl implements IMonRuleService {
     public int deleteMonRuleByIds(Long[] ruleIds) {
         for (Long ruleId : ruleIds) {
             monRuleThresholdMapper.deleteMonRuleThresholdByRuleId(ruleId);
-            monRuleWorkstateMapper.deleteMonRuleWorkstateByRuleId(ruleId);
-            monRuleCommTimeoutMapper.deleteMonRuleCommTimeoutByRuleId(ruleId);
             monRuleCountMapper.deleteMonRuleCountByRuleId(ruleId);
         }
         return monRuleMapper.deleteMonRuleByIds(ruleIds);

@@ -13,7 +13,7 @@ public interface IMonRuleCountService {
 
     MonRuleCount selectMonRuleCountById(Long countId);
 
-    MonRuleCount selectByRuleIdAndDeviceId(Long ruleId, Long deviceId);
+    MonRuleCount selectByRuleIdAndDeviceNo(Long ruleId, String deviceNo);
 
     List<MonRuleCount> selectMonRuleCountList(MonRuleCount query);
 

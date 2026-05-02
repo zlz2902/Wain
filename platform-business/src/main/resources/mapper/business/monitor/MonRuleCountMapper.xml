@@ -4,61 +4,58 @@
 <mapper namespace="com.horzits.business.mapper.monitor.MonRuleCountMapper">
 
     <resultMap id="MonRuleCountResult" type="MonRuleCount">
-        <id property="countId" column="count_id"/>
+        <id property="countId" column="id"/>
         <result property="ruleId" column="rule_id"/>
-        <result property="deviceId" column="device_id"/>
-        <result property="counts" column="counts"/>
-        <result property="lastAlarmTime" column="last_alarm_time"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <result property="deviceNo" column="device_no"/>
+        <result property="currentCount" column="current_count"/>
+        <result property="lastCheckTime" column="last_check_time"/>
     </resultMap>
 
     <sql id="selectVo">
-        select count_id, rule_id, device_id, counts, last_alarm_time, create_time, update_time from mon_rule_count
+        select id, rule_id, device_no, current_count, last_check_time from alarm_count_table
     </sql>
 
     <select id="selectMonRuleCountById" resultMap="MonRuleCountResult">
-        <include refid="selectVo"/> where count_id = #{countId}
+        <include refid="selectVo"/> where id = #{countId}
     </select>
 
-    <select id="selectByRuleIdAndDeviceId" resultMap="MonRuleCountResult">
-        <include refid="selectVo"/> where rule_id = #{ruleId} and device_id = #{deviceId}
+    <select id="selectByRuleIdAndDeviceNo" resultMap="MonRuleCountResult">
+        <include refid="selectVo"/> where rule_id = #{ruleId} and device_no = #{deviceNo}
     </select>
 
     <select id="selectMonRuleCountList" parameterType="MonRuleCount" resultMap="MonRuleCountResult">
         <include refid="selectVo"/>
         <where>
             <if test="ruleId != null">and rule_id = #{ruleId}</if>
-            <if test="deviceId != null">and device_id = #{deviceId}</if>
+            <if test="deviceNo != null and deviceNo != ''">and device_no = #{deviceNo}</if>
         </where>
-        order by count_id desc
+        order by id desc
     </select>
 
     <insert id="insertMonRuleCount" parameterType="MonRuleCount" useGeneratedKeys="true" keyProperty="countId">
-        insert into mon_rule_count (rule_id, device_id, counts, last_alarm_time, create_time, update_time)
-        values (#{ruleId}, #{deviceId}, #{counts}, #{lastAlarmTime}, #{createTime}, #{updateTime})
+        insert into alarm_count_table (rule_id, device_no, current_count, last_check_time)
+        values (#{ruleId}, #{deviceNo}, #{currentCount}, #{lastCheckTime})
     </insert>
 
     <update id="updateMonRuleCount" parameterType="MonRuleCount">
-        update mon_rule_count
+        update alarm_count_table
         <trim prefix="set" suffixOverrides=",">
-            <if test="counts != null">counts = #{counts},</if>
-            <if test="lastAlarmTime != null">last_alarm_time = #{lastAlarmTime},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="currentCount != null">current_count = #{currentCount},</if>
+            <if test="lastCheckTime != null">last_check_time = #{lastCheckTime},</if>
         </trim>
-        where count_id = #{countId}
+        where id = #{countId}
     </update>
 
     <delete id="deleteMonRuleCountById">
-        delete from mon_rule_count where count_id = #{countId}
+        delete from alarm_count_table where id = #{countId}
     </delete>
 
     <delete id="deleteMonRuleCountByIds">
-        delete from mon_rule_count where count_id in
+        delete from alarm_count_table where id in
         <foreach collection="array" item="id" open="(" separator="," close=")">#{id}</foreach>
     </delete>
 
     <delete id="deleteMonRuleCountByRuleId">
-        delete from mon_rule_count where rule_id = #{ruleId}
+        delete from alarm_count_table where rule_id = #{ruleId}
     </delete>
 </mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.horzits.business.mapper.bigscreen.BigscreenMapper">
+
+    <select id="selectUserOverview" resultType="java.util.HashMap">
+        SELECT
+            (SELECT COUNT(*) FROM sys_user WHERE del_flag = '0') AS totalNum,
+            (SELECT COUNT(DISTINCT login_name) FROM sys_user_online) AS onlineNum,
+            (SELECT COUNT(*) FROM sys_user WHERE del_flag = '0' AND status = '1') AS lockNum
+    </select>
+
+    <select id="selectLatestGlobalMetricSnapshot" resultType="java.util.HashMap">
+        SELECT temperature, humidity, pressure
+        FROM bigscreen_metric_snapshot
+        WHERE scope_type = 'GLOBAL' AND scope_key = 'ALL'
+        ORDER BY snapshot_time DESC
+        LIMIT 1
+    </select>
+
+    <select id="selectRuntimeAvgMetrics" resultType="java.util.HashMap">
+        SELECT
+            AVG(dr.current_temp) AS temperature,
+            AVG(dr.current_humi) AS humidity,
+            AVG(dr.current_pres) AS pressure
+        FROM device_runtime_status dr
+        INNER JOIN device_info di ON di.device_no = dr.device_no AND di.is_enabled = 1
+    </select>
+
+    <select id="selectSbtxList" resultType="java.util.HashMap">
+        SELECT
+            CASE WHEN di.gatewayno REGEXP '^[0-9]+$' THEN CAST(di.gatewayno AS UNSIGNED) ELSE 0 END AS gatewayno,
+            di.device_no AS deviceId,
+            IFNULL(del.online_state, IF(dr.run_status = 1, 1, 0)) AS onlineState,
+            DATE_FORMAT(IFNULL(del.event_time, dr.last_update_time), '%Y-%m-%d %H:%i:%s') AS createTime,
+            IFNULL(si.province, '') AS provinceName,
+            IFNULL(si.city, '') AS cityName,
+            IFNULL(si.county, '') AS countyName
+        FROM device_event_log del
+        INNER JOIN device_info di ON di.device_no = del.device_no
+        LEFT JOIN station_info si ON si.id = di.station_id
+        LEFT JOIN device_runtime_status dr ON dr.device_no = di.device_no
+        ORDER BY del.event_time DESC
+        LIMIT #{limitNum}
+    </select>
+
+    <select id="selectAlarmMonthlyBuckets" resultType="java.util.HashMap">
+        SELECT
+            DATE_FORMAT(alarm_time, '%Y-%m') AS ym,
+            SUM(CASE WHEN IFNULL(alarm_level, 9) &lt;= 1 THEN 1 ELSE 0 END) AS lowCnt,
+            SUM(CASE WHEN IFNULL(alarm_level, 9) &gt; 1 THEN 1 ELSE 0 END) AS highCnt
+        FROM rules_alarm_log
+        WHERE alarm_time >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL #{months} MONTH), '%Y-%m-01')
+        GROUP BY DATE_FORMAT(alarm_time, '%Y-%m')
+        ORDER BY ym ASC
+    </select>
+
+    <select id="selectSsyjList" resultType="java.util.HashMap">
+        SELECT
+            CASE WHEN di.gatewayno REGEXP '^[0-9]+$' THEN CAST(di.gatewayno AS UNSIGNED) ELSE 0 END AS gatewayno,
+            CASE WHEN di.terminalno REGEXP '^[0-9]+$' THEN CAST(di.terminalno AS UNSIGNED) ELSE 0 END AS terminalno,
+            r.alarm_name AS alertname,
+            r.alarm_value AS alertvalue,
+            r.alarm_detail AS alertdetail,
+            IFNULL(r.phase, '') AS phase,
+            IFNULL(r.sb_info, '') AS sbInfo,
+            DATE_FORMAT(r.alarm_time, '%Y-%m-%d %H:%i:%s') AS createtime,
+            IFNULL(si.province, '') AS provinceName,
+            IFNULL(si.city, '') AS cityName,
+            IFNULL(si.county, '') AS countyName,
+            CAST(NULL AS CHAR) AS deviceid
+        FROM rules_alarm_log r
+        INNER JOIN device_info di ON di.device_no = r.device_no
+        LEFT JOIN station_info si ON si.id = r.station_id
+        ORDER BY r.alarm_time DESC
+        LIMIT #{limitNum}
+    </select>
+
+    <select id="selectStationIdByNo" resultType="long">
+        SELECT id FROM station_info WHERE station_no = #{stationNo} LIMIT 1
+    </select>
+
+    <select id="selectTopologyNodes" resultType="java.util.HashMap">
+        SELECT
+            tn.node_id AS id,
+            tn.node_name AS name,
+            tn.node_type AS type,
+            si.station_no AS stationNo,
+            CASE WHEN tn.node_type = 'SITE' THEN si.station_no ELSE SUBSTRING_INDEX(tn.node_id, ':', -1) END AS deviceNo,
+            CASE
+                WHEN tn.device_no IS NULL THEN 'ONLINE'
+                WHEN IFNULL(dr.run_status, 2) = 1 THEN 'ONLINE'
+                ELSE 'OFFLINE'
+            END AS status
+        FROM topology_node tn
+        INNER JOIN station_info si ON si.id = tn.station_id
+        LEFT JOIN device_runtime_status dr ON dr.device_no = tn.device_no
+        WHERE si.station_no = #{stationNo}
+        ORDER BY tn.sort_no ASC, tn.id ASC
+    </select>
+
+    <select id="selectTopologyLinks" resultType="java.util.HashMap">
+        SELECT
+            source_node_id AS source,
+            target_node_id AS target,
+            link_type AS linkType,
+            IFNULL(label, '') AS label
+        FROM topology_link
+        WHERE station_id = #{stationId} AND is_enabled = 1
+        ORDER BY id ASC
+    </select>
+
+    <select id="selectAlarmRankingByCity" resultType="java.util.HashMap">
+        SELECT IFNULL(si.city, si.station_name) AS name, COUNT(*) AS value
+        FROM rules_alarm_log r
+        LEFT JOIN station_info si ON si.id = r.station_id
+        GROUP BY IFNULL(si.city, si.station_name)
+        ORDER BY value DESC
+        LIMIT #{limitNum}
+    </select>
+
+    <select id="selectMapAggByProvince" resultType="java.util.HashMap">
+        SELECT IFNULL(si.province, si.region_name) AS name, COUNT(DISTINCT di.id) AS value
+        FROM station_info si
+        LEFT JOIN device_info di ON di.station_id = si.id AND di.is_enabled = 1
+        WHERE si.is_enabled = 1
+        GROUP BY IFNULL(si.province, si.region_name)
+    </select>
+
+    <select id="selectMapAggByRegionChildren" resultType="java.util.HashMap">
+        SELECT IFNULL(si.city, si.county) AS name, COUNT(DISTINCT di.id) AS value
+        FROM station_info si
+        LEFT JOIN device_info di ON di.station_id = si.id AND di.is_enabled = 1
+        WHERE si.is_enabled = 1
+          AND EXISTS (
+              SELECT 1 FROM station_info z
+              WHERE z.region_code = #{regionCode} AND z.province = si.province
+          )
+        GROUP BY IFNULL(si.city, si.county)
+    </select>
+</mapper>

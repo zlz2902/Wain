@@ -5,7 +5,8 @@
  */
 let UtilVar = {
     ENC: false, //返回结果是否加密
-    baseUrl: process.env.VUE_APP_BASE_API,
+    // dev 模式下 .env.dev 可留空，配合 vue.config.js 代理 /bigscreen；非空则直连该地址
+    baseUrl: process.env.VUE_APP_BASE_API || '',
     code: 401,
 }
 

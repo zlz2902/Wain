@@ -4,107 +4,103 @@
 <mapper namespace="com.horzits.business.mapper.monitor.MonDeviceMapper">
 
     <resultMap id="MonDeviceResult" type="MonDevice">
-        <id property="deviceId" column="device_id"/>
-        <result property="siteCode" column="site_code"/>
-        <result property="deviceCode" column="device_code"/>
+        <id property="deviceId" column="id"/>
+        <result property="deviceNo" column="device_no"/>
+        <result property="gatewayno" column="gatewayno"/>
         <result property="deviceName" column="device_name"/>
-        <result property="brand" column="brand"/>
-        <result property="model" column="model"/>
-        <result property="runStatus" column="run_status"/>
-        <result property="status" column="status"/>
-        <result property="delFlag" column="del_flag"/>
-        <result property="createBy" column="create_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="updateTime" column="update_time"/>
-        <result property="remark" column="remark"/>
+        <result property="deviceType" column="device_type"/>
+        <result property="terminalno" column="terminalno"/>
+        <result property="stationId" column="station_id"/>
+        <result property="owner" column="owner"/>
+        <result property="installDate" column="install_date"/>
+        <result property="isEnabled" column="is_enabled"/>
+        <result property="createTime" column="created_at"/>
+        <result property="updateTime" column="updated_at"/>
     </resultMap>
 
     <sql id="selectMonDeviceVo">
-        select device_id, site_code, device_code, device_name, brand, model, run_status, status, del_flag,
-               create_by, create_time, update_by, update_time, remark
-        from mon_device
+        select id, device_no, gatewayno, device_name, device_type, terminalno, station_id, owner,
+               install_date, is_enabled, created_at, updated_at
+        from device_info
     </sql>
+
+    <select id="selectStationIdByDeviceNo" resultType="long">
+        select station_id from device_info where device_no = #{deviceNo} limit 1
+    </select>
 
     <select id="selectMonDeviceById" resultMap="MonDeviceResult">
         <include refid="selectMonDeviceVo"/>
-        where device_id = #{deviceId} and del_flag = '0'
+        where id = #{deviceId} and is_enabled = 1
     </select>
 
     <select id="selectMonDeviceList" parameterType="MonDevice" resultMap="MonDeviceResult">
         <include refid="selectMonDeviceVo"/>
         <where>
-            and del_flag = '0'
-            <if test="siteCode != null and siteCode != ''">and site_code = #{siteCode}</if>
-            <if test="deviceCode != null and deviceCode != ''">and device_code like concat('%', #{deviceCode}, '%')</if>
+            and is_enabled = 1
+            <if test="stationId != null">and station_id = #{stationId}</if>
+            <if test="deviceNo != null and deviceNo != ''">and device_no like concat('%', #{deviceNo}, '%')</if>
+            <if test="gatewayno != null and gatewayno != ''">and gatewayno like concat('%', #{gatewayno}, '%')</if>
             <if test="deviceName != null and deviceName != ''">and device_name like concat('%', #{deviceName}, '%')</if>
-            <if test="brand != null and brand != ''">and brand like concat('%', #{brand}, '%')</if>
-            <if test="model != null and model != ''">and model like concat('%', #{model}, '%')</if>
-            <if test="runStatus != null and runStatus != ''">and run_status = #{runStatus}</if>
-            <if test="status != null and status != ''">and status = #{status}</if>
-            <if test="params.beginTime != null and params.beginTime != ''">and create_time &gt;= #{params.beginTime}</if>
-            <if test="params.endTime != null and params.endTime != ''">and create_time &lt;= #{params.endTime}</if>
+            <if test="deviceType != null and deviceType != ''">and device_type like concat('%', #{deviceType}, '%')</if>
+            <if test="params.beginTime != null and params.beginTime != ''">and created_at &gt;= #{params.beginTime}</if>
+            <if test="params.endTime != null and params.endTime != ''">and created_at &lt;= #{params.endTime}</if>
         </where>
-        order by device_id desc
+        order by id desc
     </select>
 
     <insert id="insertMonDevice" parameterType="MonDevice" useGeneratedKeys="true" keyProperty="deviceId">
-        insert into mon_device
+        insert into device_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="siteCode != null">site_code,</if>
-            <if test="deviceCode != null and deviceCode != ''">device_code,</if>
+            <if test="deviceNo != null and deviceNo != ''">device_no,</if>
+            <if test="gatewayno != null">gatewayno,</if>
             <if test="deviceName != null">device_name,</if>
-            <if test="brand != null">brand,</if>
-            <if test="model != null">model,</if>
-            <if test="runStatus != null">run_status,</if>
-            <if test="status != null">status,</if>
-            <if test="delFlag != null">del_flag,</if>
-            <if test="createBy != null">create_by,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="updateBy != null">update_by,</if>
-            <if test="updateTime != null">update_time,</if>
-            <if test="remark != null">remark,</if>
+            <if test="deviceType != null">device_type,</if>
+            <if test="terminalno != null">terminalno,</if>
+            <if test="stationId != null">station_id,</if>
+            <if test="owner != null">owner,</if>
+            <if test="installDate != null">install_date,</if>
+            <if test="isEnabled != null">is_enabled,</if>
+            created_at,
+            updated_at,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="siteCode != null">#{siteCode},</if>
-            <if test="deviceCode != null and deviceCode != ''">#{deviceCode},</if>
+            <if test="deviceNo != null and deviceNo != ''">#{deviceNo},</if>
+            <if test="gatewayno != null">#{gatewayno},</if>
             <if test="deviceName != null">#{deviceName},</if>
-            <if test="brand != null">#{brand},</if>
-            <if test="model != null">#{model},</if>
-            <if test="runStatus != null">#{runStatus},</if>
-            <if test="status != null">#{status},</if>
-            <if test="delFlag != null">#{delFlag},</if>
-            <if test="createBy != null">#{createBy},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateBy != null">#{updateBy},</if>
-            <if test="updateTime != null">#{updateTime},</if>
-            <if test="remark != null">#{remark},</if>
+            <if test="deviceType != null">#{deviceType},</if>
+            <if test="terminalno != null">#{terminalno},</if>
+            <if test="stationId != null">#{stationId},</if>
+            <if test="owner != null">#{owner},</if>
+            <if test="installDate != null">#{installDate},</if>
+            <if test="isEnabled != null">#{isEnabled},</if>
+            #{createTime},
+            #{updateTime},
         </trim>
     </insert>
 
     <update id="updateMonDevice" parameterType="MonDevice">
-        update mon_device
+        update device_info
         <trim prefix="set" suffixOverrides=",">
-            <if test="siteCode != null">site_code = #{siteCode},</if>
-            <if test="deviceCode != null and deviceCode != ''">device_code = #{deviceCode},</if>
+            <if test="deviceNo != null and deviceNo != ''">device_no = #{deviceNo},</if>
+            <if test="gatewayno != null">gatewayno = #{gatewayno},</if>
             <if test="deviceName != null">device_name = #{deviceName},</if>
-            <if test="brand != null">brand = #{brand},</if>
-            <if test="model != null">model = #{model},</if>
-            <if test="runStatus != null">run_status = #{runStatus},</if>
-            <if test="status != null">status = #{status},</if>
-            <if test="updateBy != null">update_by = #{updateBy},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-            <if test="remark != null">remark = #{remark},</if>
+            <if test="deviceType != null">device_type = #{deviceType},</if>
+            <if test="terminalno != null">terminalno = #{terminalno},</if>
+            <if test="stationId != null">station_id = #{stationId},</if>
+            <if test="owner != null">owner = #{owner},</if>
+            <if test="installDate != null">install_date = #{installDate},</if>
+            <if test="isEnabled != null">is_enabled = #{isEnabled},</if>
+            updated_at = #{updateTime},
         </trim>
-        where device_id = #{deviceId} and del_flag = '0'
+        where id = #{deviceId} and is_enabled = 1
     </update>
 
     <update id="deleteMonDeviceById">
-        update mon_device set del_flag = '2' where device_id = #{deviceId}
+        update device_info set is_enabled = 0, updated_at = now() where id = #{deviceId}
     </update>
 
     <update id="deleteMonDeviceByIds">
-        update mon_device set del_flag = '2' where device_id in
+        update device_info set is_enabled = 0, updated_at = now() where id in
         <foreach collection="array" item="id" open="(" separator="," close=")">#{id}</foreach>
     </update>
 </mapper>

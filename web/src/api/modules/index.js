@@ -13,7 +13,7 @@ export const paramType ={
     'big3':"/bigscreen/sbtx", //设备提醒
     'big4':"/bigscreen/alarmNum", //报警次数
     'big5':'/bigscreen/ssyj',//实时预警 
-    'big6':'/bigscreen/installationPlan',// 安装计划
+    'big6':'/bigscreen/topology',// 拓扑图（兼容旧地址见 /bigscreen/installationPlan）
     'big7':'/bigscreen/ranking',// 报警排名
     'big8':'/bigscreen/centermap',// //中间地图
 

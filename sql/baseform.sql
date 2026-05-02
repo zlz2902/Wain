@@ -952,171 +952,238 @@ INSERT INTO `sys_user_role` VALUES (1, 1);
 INSERT INTO `sys_user_role` VALUES (2, 2);
 
 -- ----------------------------
--- 监控告警规则引擎业务表（毕业设计论文：设备管理 + 规则总表 + 四类场景子表 + 告警持久化）
+-- 监控/大屏业务表（Database_Design_Specification）
 -- ----------------------------
 
--- ----------------------------
--- Table structure for mon_device
--- ----------------------------
-DROP TABLE IF EXISTS `mon_device`;
-CREATE TABLE `mon_device`  (
-  `device_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '设备主键',
-  `site_code` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '站点代码',
-  `device_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '设备唯一标识',
-  `device_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设备名称',
-  `brand` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '品牌',
-  `model` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '型号',
-  `run_status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '运行状况（0正常 1故障 2离线 3维护）',
-  `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '启用状态（0正常 1停用）',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0存在 2删除）',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`device_id`) USING BTREE,
-  UNIQUE INDEX `uk_site_device`(`site_code`, `device_code`) USING BTREE,
-  INDEX `idx_device_code`(`device_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '监控设备信息表' ROW_FORMAT = COMPACT;
+DROP TABLE IF EXISTS `topology_link`;
+DROP TABLE IF EXISTS `topology_node`;
+DROP TABLE IF EXISTS `device_event_log`;
+DROP TABLE IF EXISTS `rules_alarm_log`;
+DROP TABLE IF EXISTS `alarm_count_table`;
+DROP TABLE IF EXISTS `threshold_rule_table`;
+DROP TABLE IF EXISTS `rules_table`;
+DROP TABLE IF EXISTS `device_runtime_status`;
+DROP TABLE IF EXISTS `device_info`;
+DROP TABLE IF EXISTS `station_info`;
+DROP TABLE IF EXISTS `bigscreen_metric_snapshot`;
 
--- ----------------------------
--- Table structure for mon_rule
--- 对应论文表4.1 规则总表
--- ----------------------------
-DROP TABLE IF EXISTS `mon_rule`;
-CREATE TABLE `mon_rule`  (
-  `rule_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '规则主键',
-  `site_code` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '站点代码',
-  `device_id` bigint(20) NOT NULL COMMENT '关联设备ID（设备唯一标识通过设备表关联）',
-  `rule_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '规则编号',
-  `rule_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '规则名称',
-  `rule_desc` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '规则说明',
-  `scene_type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '场景类型（1阈值范围 2次数累计 3工况状态 4通讯超时）',
-  `enabled` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '是否启用（0否 1是）',
-  `effect_begin` datetime NULL DEFAULT NULL COMMENT '生效时间起',
-  `effect_end` datetime NULL DEFAULT NULL COMMENT '生效时间止',
-  `max_accum_count` int(11) NULL DEFAULT NULL COMMENT '累计异常次数上限（达到后触发告警）',
-  `is_count` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '是否累计型（0非累计立即判定 1累计型按次数触发，对应论文iscount）',
-  `max_serial_per_level` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '各告警级别连续触发最大限制（可存JSON或分号分隔配置）',
-  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0存在 2删除）',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`rule_id`) USING BTREE,
-  UNIQUE INDEX `uk_device_rule_code`(`device_id`, `rule_code`) USING BTREE,
-  INDEX `idx_rule_device`(`device_id`) USING BTREE,
-  INDEX `idx_rule_scene`(`scene_type`, `enabled`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '告警规则总表' ROW_FORMAT = COMPACT;
+CREATE TABLE `station_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `station_no` varchar(50) NOT NULL COMMENT '站点编号',
+  `station_name` varchar(100) NOT NULL COMMENT '站点名称',
+  `region_code` varchar(20) DEFAULT NULL COMMENT '行政区划编码',
+  `region_name` varchar(50) DEFAULT NULL COMMENT '区域名称',
+  `province` varchar(50) DEFAULT NULL COMMENT '省',
+  `city` varchar(50) DEFAULT NULL COMMENT '市',
+  `county` varchar(50) DEFAULT NULL COMMENT '区县',
+  `longitude` decimal(10,6) DEFAULT NULL COMMENT '经度',
+  `latitude` decimal(10,6) DEFAULT NULL COMMENT '纬度',
+  `location_desc` varchar(255) DEFAULT NULL COMMENT '位置描述',
+  `is_enabled` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否启用',
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_station_no` (`station_no`),
+  KEY `idx_station_region_code` (`region_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='站点信息表';
 
--- ----------------------------
--- Table structure for mon_rule_count
--- 对应论文表4.2 报警次数累计表
--- ----------------------------
-DROP TABLE IF EXISTS `mon_rule_count`;
-CREATE TABLE `mon_rule_count`  (
-  `count_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `rule_id` bigint(20) NOT NULL COMMENT '关联规则总表',
-  `device_id` bigint(20) NOT NULL COMMENT '关联设备',
-  `counts` int(11) NOT NULL DEFAULT 0 COMMENT '当前累计异常次数（论文counts）',
-  `last_alarm_time` datetime NULL DEFAULT NULL COMMENT '最近一次告警时间戳',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`count_id`) USING BTREE,
-  UNIQUE INDEX `uk_rule_device_count`(`rule_id`, `device_id`) USING BTREE,
-  INDEX `idx_count_rule`(`rule_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '报警次数累计表' ROW_FORMAT = COMPACT;
+CREATE TABLE `device_info` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `device_no` varchar(50) NOT NULL COMMENT '设备唯一编号',
+  `gatewayno` varchar(50) DEFAULT NULL COMMENT '网关号',
+  `device_name` varchar(100) NOT NULL COMMENT '设备名称',
+  `device_type` varchar(50) DEFAULT NULL COMMENT '设备类型',
+  `terminalno` varchar(50) DEFAULT NULL COMMENT '终端号',
+  `station_id` bigint(20) NOT NULL COMMENT '站点ID',
+  `owner` varchar(50) DEFAULT NULL COMMENT '负责人',
+  `install_date` datetime DEFAULT NULL COMMENT '安装日期',
+  `is_enabled` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否启用',
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_device_no` (`device_no`),
+  KEY `idx_device_station_id` (`station_id`),
+  KEY `idx_device_gatewayno` (`gatewayno`),
+  CONSTRAINT `fk_device_station` FOREIGN KEY (`station_id`) REFERENCES `station_info` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备信息表';
 
--- ----------------------------
--- Table structure for mon_rule_threshold
--- 对应论文表4.3 阈值范围规则场景表
--- ----------------------------
-DROP TABLE IF EXISTS `mon_rule_threshold`;
-CREATE TABLE `mon_rule_threshold`  (
-  `threshold_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `rule_id` bigint(20) NOT NULL COMMENT '关联规则总表',
-  `metric_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '监测指标编码（温湿度气压等）',
-  `metric_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '监测指标名称',
-  `min_value` decimal(18, 4) NULL DEFAULT NULL COMMENT '阈值下限',
-  `max_value` decimal(18, 4) NULL DEFAULT NULL COMMENT '阈值上限',
-  `alarm_level` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '2' COMMENT '告警级别（1提示 2一般 3严重 4紧急）',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`threshold_id`) USING BTREE,
-  INDEX `idx_threshold_rule`(`rule_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '阈值范围规则场景表' ROW_FORMAT = COMPACT;
+CREATE TABLE `device_runtime_status` (
+  `device_no` varchar(50) NOT NULL COMMENT '设备编号',
+  `current_temp` double DEFAULT NULL COMMENT '当前温度',
+  `current_humi` double DEFAULT NULL COMMENT '当前湿度',
+  `current_pres` double DEFAULT NULL COMMENT '当前气压',
+  `run_status` int(11) NOT NULL DEFAULT 2 COMMENT '运行状态',
+  `last_update_time` datetime DEFAULT NULL COMMENT '最后上报时间',
+  PRIMARY KEY (`device_no`),
+  KEY `idx_runtime_last_update` (`last_update_time`),
+  KEY `idx_runtime_status` (`run_status`),
+  CONSTRAINT `fk_runtime_device` FOREIGN KEY (`device_no`) REFERENCES `device_info` (`device_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备运行状态表';
 
--- ----------------------------
--- Table structure for mon_rule_workstate
--- 对应论文表4.4 工况状态报警表
--- ----------------------------
-DROP TABLE IF EXISTS `mon_rule_workstate`;
-CREATE TABLE `mon_rule_workstate`  (
-  `workstate_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `rule_id` bigint(20) NOT NULL COMMENT '关联规则总表',
-  `rule_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '规则编码（与总表规则编号一致时可冗余存储）',
-  `param_key` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设备检测参数标识',
-  `normal_min` decimal(18, 4) NULL DEFAULT NULL COMMENT '正常工况阈值下限',
-  `normal_max` decimal(18, 4) NULL DEFAULT NULL COMMENT '正常工况阈值上限（实际值异常或低于正常下限时触发）',
-  `alarm_level` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '2' COMMENT '告警级别',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`workstate_id`) USING BTREE,
-  INDEX `idx_workstate_rule`(`rule_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '工况状态报警表' ROW_FORMAT = COMPACT;
+CREATE TABLE `device_event_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `device_no` varchar(50) NOT NULL COMMENT '设备编号',
+  `station_id` bigint(20) DEFAULT NULL COMMENT '站点ID',
+  `event_type` varchar(20) NOT NULL COMMENT '事件类型',
+  `online_state` tinyint(4) DEFAULT NULL COMMENT '在线状态',
+  `event_time` datetime DEFAULT NULL COMMENT '事件时间',
+  `ext_json` text COMMENT '扩展',
+  PRIMARY KEY (`id`),
+  KEY `idx_event_device` (`device_no`),
+  KEY `idx_event_station` (`station_id`),
+  KEY `idx_event_time` (`event_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='设备事件流水表';
 
--- ----------------------------
--- Table structure for mon_rule_comm_timeout
--- 对应论文表4.5 通讯超时报警表（论文：规则总表与通讯超时场景一对多）
--- ----------------------------
-DROP TABLE IF EXISTS `mon_rule_comm_timeout`;
-CREATE TABLE `mon_rule_comm_timeout`  (
-  `timeout_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `rule_id` bigint(20) NOT NULL COMMENT '关联规则总表',
-  `endpoint_code` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '外部端口/链路等唯一识别符',
-  `timeout_sec` int(11) NOT NULL COMMENT '超时阈值（秒），周期内无数据包则预警',
-  `alarm_level` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '2' COMMENT '告警级别',
-  `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`timeout_id`) USING BTREE,
-  INDEX `idx_timeout_rule`(`rule_id`) USING BTREE,
-  INDEX `idx_timeout_endpoint`(`endpoint_code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通讯超时规则场景表' ROW_FORMAT = COMPACT;
+CREATE TABLE `rules_table` (
+  `rule_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '规则ID',
+  `rule_name` varchar(100) NOT NULL COMMENT '规则名称',
+  `scene_type` int(11) NOT NULL COMMENT '场景类型',
+  `is_enabled` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否启用',
+  `alarm_level` int(11) NOT NULL DEFAULT 1 COMMENT '告警级别',
+  `accumulate_count` int(11) NOT NULL DEFAULT 1 COMMENT '连续异常次数',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`rule_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='告警规则表';
 
--- ----------------------------
--- Table structure for mon_alarm_record
--- 告警事件持久化（论文：报文解析后存储报警信息、处理结果）
--- ----------------------------
-DROP TABLE IF EXISTS `mon_alarm_record`;
-CREATE TABLE `mon_alarm_record`  (
-  `alarm_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '告警主键',
-  `rule_id` bigint(20) NULL DEFAULT NULL COMMENT '触发规则ID',
-  `device_id` bigint(20) NOT NULL COMMENT '关联设备',
-  `scene_type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '场景类型（同规则总表）',
-  `alarm_type` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '异常类型（数值越界/状态偏离/通讯超时等）',
-  `alarm_level` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '2' COMMENT '告警级别',
-  `alarm_title` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '告警标题',
-  `alarm_content` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '告警详情',
-  `metric_snapshot` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '触发时指标快照（JSON或文本）',
-  `alarm_time` datetime NOT NULL COMMENT '告警时间',
-  `handle_status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '处理状态（0未处理 1处理中 2已关闭）',
-  `handle_remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '处理说明',
-  `handle_time` datetime NULL DEFAULT NULL COMMENT '处理时间',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '入库时间',
-  PRIMARY KEY (`alarm_id`) USING BTREE,
-  INDEX `idx_alarm_device_time`(`device_id`, `alarm_time`) USING BTREE,
-  INDEX `idx_alarm_rule`(`rule_id`) USING BTREE,
-  INDEX `idx_alarm_handle`(`handle_status`, `alarm_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '告警记录表' ROW_FORMAT = COMPACT;
+CREATE TABLE `threshold_rule_table` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `rule_id` bigint(20) NOT NULL,
+  `resource_type` varchar(20) NOT NULL COMMENT '指标类型',
+  `min_value` double DEFAULT NULL,
+  `max_value` double DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_threshold_rule_id` (`rule_id`),
+  CONSTRAINT `fk_threshold_rule` FOREIGN KEY (`rule_id`) REFERENCES `rules_table` (`rule_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='阈值规则明细表';
+
+CREATE TABLE `rules_alarm_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '告警ID',
+  `device_no` varchar(50) NOT NULL,
+  `station_id` bigint(20) DEFAULT NULL,
+  `rule_id` bigint(20) DEFAULT NULL,
+  `alarm_level` int(11) DEFAULT NULL,
+  `alarm_type` varchar(50) DEFAULT NULL,
+  `alarm_name` varchar(100) DEFAULT NULL,
+  `alarm_value` double DEFAULT NULL,
+  `alarm_detail` varchar(500) DEFAULT NULL,
+  `phase` varchar(20) DEFAULT NULL,
+  `sb_info` varchar(500) DEFAULT NULL,
+  `alarm_time` datetime DEFAULT NULL,
+  `is_handled` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_alarm_time` (`alarm_time`),
+  KEY `idx_alarm_station_time` (`station_id`,`alarm_time`),
+  KEY `idx_alarm_device_time` (`device_no`,`alarm_time`),
+  KEY `idx_alarm_rule` (`rule_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='告警日志表';
+
+CREATE TABLE `alarm_count_table` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `device_no` varchar(50) NOT NULL,
+  `rule_id` bigint(20) NOT NULL,
+  `current_count` int(11) DEFAULT 0,
+  `last_check_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_device_rule` (`device_no`,`rule_id`),
+  KEY `idx_ac_rule` (`rule_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='规则异常累计计数表';
+
+CREATE TABLE `topology_node` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `station_id` bigint(20) NOT NULL,
+  `node_id` varchar(80) NOT NULL,
+  `node_name` varchar(100) NOT NULL,
+  `node_type` varchar(50) NOT NULL,
+  `device_no` varchar(50) DEFAULT NULL,
+  `sort_no` int(11) NOT NULL DEFAULT 0,
+  `ext_json` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_topology_node_id` (`node_id`),
+  KEY `idx_topology_station` (`station_id`),
+  KEY `idx_topology_device` (`device_no`),
+  CONSTRAINT `fk_topo_node_station` FOREIGN KEY (`station_id`) REFERENCES `station_info` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='拓扑节点表';
+
+CREATE TABLE `topology_link` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `station_id` bigint(20) NOT NULL,
+  `source_node_id` varchar(80) NOT NULL,
+  `target_node_id` varchar(80) NOT NULL,
+  `link_type` varchar(30) NOT NULL,
+  `label` varchar(50) DEFAULT NULL,
+  `is_enabled` tinyint(4) NOT NULL DEFAULT 1,
+  `ext_json` text,
+  PRIMARY KEY (`id`),
+  KEY `idx_link_station` (`station_id`),
+  KEY `idx_link_src` (`source_node_id`),
+  KEY `idx_link_tgt` (`target_node_id`),
+  CONSTRAINT `fk_topo_link_station` FOREIGN KEY (`station_id`) REFERENCES `station_info` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='拓扑连边表';
+
+CREATE TABLE `bigscreen_metric_snapshot` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `scope_type` varchar(20) NOT NULL,
+  `scope_key` varchar(50) NOT NULL,
+  `temperature` double DEFAULT NULL,
+  `humidity` double DEFAULT NULL,
+  `pressure` double DEFAULT NULL,
+  `snapshot_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_snapshot_scope_time` (`scope_type`,`scope_key`,`snapshot_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='大屏指标快照表';
+
+INSERT INTO `station_info` (`id`,`station_no`,`station_name`,`region_code`,`region_name`,`province`,`city`,`county`,`longitude`,`latitude`,`location_desc`,`is_enabled`,`created_at`,`updated_at`) VALUES
+(1,'DH-01','敦煌站','620000','甘肃省','甘肃省','酒泉市','敦煌市','94.661970','40.142129','敦煌',1,NOW(),NOW());
+
+INSERT INTO `device_info` (`id`,`device_no`,`gatewayno`,`device_name`,`device_type`,`terminalno`,`station_id`,`owner`,`install_date`,`is_enabled`,`created_at`,`updated_at`) VALUES
+(1,'6c512d754bbcd6d7cd86abce0e0cac58','10000','氢原子钟(主)','CLOCK_MAIN','100',1,NULL,NULL,1,NOW(),NOW()),
+(2,'SRV-1','10001','授时服务器','SERVER','101',1,NULL,NULL,1,NOW(),NOW()),
+(3,'SW-1','10002','交换机','SWITCH','102',1,NULL,NULL,1,NOW(),NOW()),
+(4,'PHASE-1','10003','相位微调器','PHASE_TUNER','103',1,NULL,NULL,1,NOW(),NOW()),
+(5,'CLK-B','10004','氢原子钟(备)','CLOCK_BACKUP','104',1,NULL,NULL,1,NOW(),NOW()),
+(6,'GNSS-1','10005','GNSS天线','GNSS','105',1,NULL,NULL,1,NOW(),NOW());
+
+INSERT INTO `device_runtime_status` (`device_no`,`current_temp`,`current_humi`,`current_pres`,`run_status`,`last_update_time`) VALUES
+('6c512d754bbcd6d7cd86abce0e0cac58',26.4,48,1012,1,NOW()),
+('SRV-1',25.1,47,1011,1,NOW()),
+('SW-1',27.0,49,1013,1,NOW()),
+('PHASE-1',26.8,48,1012,1,NOW()),
+('CLK-B',26.0,50,1010,2,NOW()),
+('GNSS-1',24.5,45,1009,1,NOW());
+
+INSERT INTO `bigscreen_metric_snapshot` (`scope_type`,`scope_key`,`temperature`,`humidity`,`pressure`,`snapshot_time`) VALUES
+('GLOBAL','ALL',26.4,48,1012,NOW());
+
+INSERT INTO `rules_table` (`rule_id`,`rule_name`,`scene_type`,`is_enabled`,`alarm_level`,`accumulate_count`,`created_at`,`updated_at`) VALUES
+(1,'机房温湿度阈值',1,1,2,1,NOW(),NOW());
+
+INSERT INTO `threshold_rule_table` (`id`,`rule_id`,`resource_type`,`min_value`,`max_value`) VALUES
+(1,1,'Temperature',15,35);
+
+INSERT INTO `device_event_log` (`device_no`,`station_id`,`event_type`,`online_state`,`event_time`,`ext_json`) VALUES
+('6c512d754bbcd6d7cd86abce0e0cac58',1,'ONLINE',1,NOW(),NULL),
+('CLK-B',1,'OFFLINE',0,DATE_SUB(NOW(), INTERVAL 1 HOUR),NULL);
+
+INSERT INTO `rules_alarm_log` (`device_no`,`station_id`,`rule_id`,`alarm_level`,`alarm_type`,`alarm_name`,`alarm_value`,`alarm_detail`,`phase`,`sb_info`,`alarm_time`,`is_handled`) VALUES
+('6c512d754bbcd6d7cd86abce0e0cac58',1,1,2,'THRESHOLD','水浸告警',126.5,'传感器读数异常，请检查线路与供电','A1','设备运行信息摘要（示例）',NOW(),0),
+('SRV-1',1,1,1,'THRESHOLD','电压波动',220.5,'轻微超限','B1','授时服务正常',DATE_SUB(NOW(), INTERVAL 10 DAY),0);
+
+INSERT INTO `topology_node` (`station_id`,`node_id`,`node_name`,`node_type`,`device_no`,`sort_no`) VALUES
+(1,'site:DH-01','敦煌站','SITE',NULL,0),
+(1,'dev:SW-1','交换机','SWITCH','SW-1',1),
+(1,'dev:SRV-1','授时服务器','SERVER','SRV-1',2),
+(1,'dev:PHASE-1','相位微调器','PHASE_TUNER','PHASE-1',3),
+(1,'dev:CLK-M','氢原子钟(主)','CLOCK_MAIN','6c512d754bbcd6d7cd86abce0e0cac58',4),
+(1,'dev:CLK-B','氢原子钟(备)','CLOCK_BACKUP','CLK-B',5),
+(1,'dev:GNSS-1','GNSS天线','GNSS','GNSS-1',6);
+
+INSERT INTO `topology_link` (`station_id`,`source_node_id`,`target_node_id`,`link_type`,`label`,`is_enabled`) VALUES
+(1,'site:DH-01','dev:SW-1','PHYSICAL','网络',1),
+(1,'dev:SW-1','dev:SRV-1','PHYSICAL','以太网',1),
+(1,'dev:SW-1','dev:PHASE-1','LOGICAL','控制',1),
+(1,'dev:PHASE-1','dev:CLK-M','REFERENCE','参考',1),
+(1,'dev:PHASE-1','dev:CLK-B','REFERENCE','参考',1),
+(1,'dev:GNSS-1','dev:SRV-1','LOGICAL','授时',1);
 
 SET FOREIGN_KEY_CHECKS = 1;

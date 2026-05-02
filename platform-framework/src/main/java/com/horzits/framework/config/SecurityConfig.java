@@ -121,6 +121,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/serch/**").permitAll()
                 .antMatchers("/avicrobot/webService/**").permitAll()
                 .antMatchers("/business/whitelist/qqqqq").anonymous()
+                .antMatchers("/bigscreen/**").permitAll()
 //                .antMatchers("/jmreport/**").authenticated()
 
                 // 除上面外的所有请求全部需要鉴权认证

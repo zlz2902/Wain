@@ -1,5 +1,6 @@
 package com.horzits.business.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.horzits.common.annotation.Excel;
 import com.horzits.common.core.domain.BaseEntity;
 import io.swagger.annotations.ApiModel;
@@ -7,10 +8,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Date;
+
 /**
- * 监控设备信息
- *
- * @author horzits
+ * 设备信息 device_info
  */
 @ApiModel(description = "监控设备信息")
 @Data
@@ -19,36 +20,40 @@ public class MonDevice extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("设备主键")
+    @ApiModelProperty("主键")
     private Long deviceId;
 
-    @ApiModelProperty("站点代码")
-    @Excel(name = "站点代码")
-    private String siteCode;
+    @ApiModelProperty("设备唯一编号 device_no")
+    @Excel(name = "设备编号")
+    private String deviceNo;
 
-    @ApiModelProperty("设备唯一标识")
-    @Excel(name = "设备编码")
-    private String deviceCode;
+    @ApiModelProperty("网关号 gatewayno")
+    @Excel(name = "网关号")
+    private String gatewayno;
 
     @ApiModelProperty("设备名称")
     @Excel(name = "设备名称")
     private String deviceName;
 
-    @ApiModelProperty("品牌")
-    @Excel(name = "品牌")
-    private String brand;
+    @ApiModelProperty("设备类型")
+    @Excel(name = "设备类型")
+    private String deviceType;
 
-    @ApiModelProperty("型号")
-    @Excel(name = "型号")
-    private String model;
+    @ApiModelProperty("终端号 terminalno")
+    @Excel(name = "终端号")
+    private String terminalno;
 
-    @ApiModelProperty("运行状况（0正常 1故障 2离线 3维护）")
-    @Excel(name = "运行状况")
-    private String runStatus;
+    @ApiModelProperty("站点ID")
+    private Long stationId;
 
-    @ApiModelProperty("启用状态（0正常 1停用）")
-    private String status;
+    @ApiModelProperty("负责人")
+    @Excel(name = "负责人")
+    private String owner;
 
-    @ApiModelProperty("删除标志（0存在 2删除）")
-    private String delFlag;
+    @ApiModelProperty("安装日期")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date installDate;
+
+    @ApiModelProperty("是否启用 0/1")
+    private Integer isEnabled;
 }

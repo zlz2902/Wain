@@ -7,14 +7,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.math.BigDecimal;
-
 /**
- * 阈值范围规则场景表
- *
- * @author ruoyi
+ * 阈值规则明细 threshold_rule_table
  */
-@ApiModel(description = "阈值范围规则场景表")
+@ApiModel(description = "阈值规则明细")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class MonRuleThreshold extends BaseEntity {
@@ -24,23 +20,16 @@ public class MonRuleThreshold extends BaseEntity {
     @ApiModelProperty("主键")
     private Long thresholdId;
 
-    @ApiModelProperty("关联规则总表")
-    @Excel(name = "规则ID")
+    @ApiModelProperty("规则ID")
     private Long ruleId;
 
-    @ApiModelProperty("监测指标编码")
-    private String metricCode;
+    @ApiModelProperty("指标 Temperature/Humidity/Pressure")
+    @Excel(name = "指标")
+    private String resourceType;
 
-    @ApiModelProperty("监测指标名称")
-    @Excel(name = "指标名称")
-    private String metricName;
+    @ApiModelProperty("下限")
+    private Double minValue;
 
-    @ApiModelProperty("阈值下限")
-    private BigDecimal minValue;
-
-    @ApiModelProperty("阈值上限")
-    private BigDecimal maxValue;
-
-    @ApiModelProperty("告警级别")
-    private String alarmLevel;
+    @ApiModelProperty("上限")
+    private Double maxValue;
 }

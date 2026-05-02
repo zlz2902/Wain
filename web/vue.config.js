@@ -115,7 +115,13 @@ module.exports = {
   parallel: require('os').cpus().length > 1,
 
   devServer: {
-    // 配置多个代理
+    // 可选：与 VUE_APP_BASE_API 留空配合使用，避免浏览器跨域；当前默认直连 8089 + 后端已开 CORS
+    proxy: {
+      '/bigscreen': {
+        target: 'http://localhost:8089',
+        changeOrigin: true
+      }
+    }
   },
   pluginOptions: {
   }

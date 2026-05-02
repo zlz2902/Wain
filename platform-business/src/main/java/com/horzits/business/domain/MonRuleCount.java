@@ -9,11 +9,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 报警次数累计表
- *
- * @author ruoyi
+ * 规则累计 alarm_count_table
  */
-@ApiModel(description = "报警次数累计表")
+@ApiModel(description = "规则异常累计")
 @Data
 public class MonRuleCount implements Serializable {
 
@@ -22,22 +20,16 @@ public class MonRuleCount implements Serializable {
     @ApiModelProperty("主键")
     private Long countId;
 
-    @ApiModelProperty("关联规则总表")
+    @ApiModelProperty("设备编号")
+    private String deviceNo;
+
+    @ApiModelProperty("规则ID")
     private Long ruleId;
 
-    @ApiModelProperty("关联设备")
-    private Long deviceId;
+    @ApiModelProperty("当前连续次数")
+    private Integer currentCount;
 
-    @ApiModelProperty("当前累计异常次数 counts")
-    private Integer counts;
-
-    @ApiModelProperty("最近一次告警时间戳")
+    @ApiModelProperty("最后检查时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastAlarmTime;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
+    private Date lastCheckTime;
 }

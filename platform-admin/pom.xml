@@ -16,7 +16,7 @@
     </description>
 
     <dependencies>
-        <!-- 客户不需要 Redis/Devtools：移除热部署依赖，避免类加载残留问题 -->
+        
 
         <!-- swagger3-->
         <dependency>

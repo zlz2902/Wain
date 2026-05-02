@@ -9,59 +9,53 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 告警记录表
- *
- * @author ruoyi
+ * 告警日志 rules_alarm_log
  */
-@ApiModel(description = "告警记录表")
+@ApiModel(description = "告警日志")
 @Data
 public class MonAlarmRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("告警主键")
+    @ApiModelProperty("告警ID")
     private Long alarmId;
 
-    @ApiModelProperty("触发规则ID")
+    @ApiModelProperty("设备编号")
+    private String deviceNo;
+
+    @ApiModelProperty("站点ID")
+    private Long stationId;
+
+    @ApiModelProperty("规则ID")
     private Long ruleId;
 
-    @ApiModelProperty("关联设备ID")
-    private Long deviceId;
+    @ApiModelProperty("告警级别")
+    private Integer alarmLevel;
 
-    @ApiModelProperty("场景类型")
-    private String sceneType;
-
-    @ApiModelProperty("异常类型")
+    @ApiModelProperty("告警类型")
     private String alarmType;
 
-    @ApiModelProperty("告警级别")
-    private String alarmLevel;
+    @ApiModelProperty("告警名称")
+    private String alarmName;
 
-    @ApiModelProperty("告警标题")
-    private String alarmTitle;
+    @ApiModelProperty("告警值")
+    private Double alarmValue;
 
-    @ApiModelProperty("告警详情")
-    private String alarmContent;
+    @ApiModelProperty("详情")
+    private String alarmDetail;
 
-    @ApiModelProperty("触发时指标快照")
-    private String metricSnapshot;
+    @ApiModelProperty("相位")
+    private String phase;
+
+    @ApiModelProperty("设备运行摘要")
+    private String sbInfo;
 
     @ApiModelProperty("告警时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date alarmTime;
 
-    @ApiModelProperty("处理状态（0未处理 1处理中 2已关闭）")
-    private String handleStatus;
-
-    @ApiModelProperty("处理说明")
-    private String handleRemark;
-
-    @ApiModelProperty("处理时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date handleTime;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+    @ApiModelProperty("是否已处理 0/1")
+    private Integer isHandled;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(hidden = true)

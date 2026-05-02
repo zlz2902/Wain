@@ -3,7 +3,6 @@ package com.horzits.business.service.monitor.impl;
 import com.horzits.business.domain.MonRuleCount;
 import com.horzits.business.mapper.monitor.MonRuleCountMapper;
 import com.horzits.business.service.monitor.IMonRuleCountService;
-import com.horzits.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +25,8 @@ public class MonRuleCountServiceImpl implements IMonRuleCountService {
     }
 
     @Override
-    public MonRuleCount selectByRuleIdAndDeviceId(Long ruleId, Long deviceId) {
-        return monRuleCountMapper.selectByRuleIdAndDeviceId(ruleId, deviceId);
+    public MonRuleCount selectByRuleIdAndDeviceNo(Long ruleId, String deviceNo) {
+        return monRuleCountMapper.selectByRuleIdAndDeviceNo(ruleId, deviceNo);
     }
 
     @Override
@@ -37,17 +36,14 @@ public class MonRuleCountServiceImpl implements IMonRuleCountService {
 
     @Override
     public int insertMonRuleCount(MonRuleCount row) {
-        if (row.getCounts() == null) {
-            row.setCounts(0);
+        if (row.getCurrentCount() == null) {
+            row.setCurrentCount(0);
         }
-        row.setCreateTime(DateUtils.getNowDate());
-        row.setUpdateTime(row.getCreateTime());
         return monRuleCountMapper.insertMonRuleCount(row);
     }
 
     @Override
     public int updateMonRuleCount(MonRuleCount row) {
-        row.setUpdateTime(DateUtils.getNowDate());
         return monRuleCountMapper.updateMonRuleCount(row);
     }
 

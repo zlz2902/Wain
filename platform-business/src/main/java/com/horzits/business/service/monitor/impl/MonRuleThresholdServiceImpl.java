@@ -3,7 +3,6 @@ package com.horzits.business.service.monitor.impl;
 import com.horzits.business.domain.MonRuleThreshold;
 import com.horzits.business.mapper.monitor.MonRuleThresholdMapper;
 import com.horzits.business.service.monitor.IMonRuleThresholdService;
-import com.horzits.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,13 +31,11 @@ public class MonRuleThresholdServiceImpl implements IMonRuleThresholdService {
 
     @Override
     public int insertMonRuleThreshold(MonRuleThreshold row) {
-        row.setCreateTime(DateUtils.getNowDate());
         return monRuleThresholdMapper.insertMonRuleThreshold(row);
     }
 
     @Override
     public int updateMonRuleThreshold(MonRuleThreshold row) {
-        row.setUpdateTime(DateUtils.getNowDate());
         return monRuleThresholdMapper.updateMonRuleThreshold(row);
     }
 

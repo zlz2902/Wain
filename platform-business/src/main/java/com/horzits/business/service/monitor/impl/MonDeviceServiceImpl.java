@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * 监控设备信息
- *
- * @author horzits
+ * 设备信息 device_info
  */
 @Service
 public class MonDeviceServiceImpl implements IMonDeviceService {
@@ -32,16 +30,11 @@ public class MonDeviceServiceImpl implements IMonDeviceService {
 
     @Override
     public int insertMonDevice(MonDevice monDevice) {
-        if (monDevice.getDelFlag() == null) {
-            monDevice.setDelFlag("0");
-        }
-        if (monDevice.getStatus() == null) {
-            monDevice.setStatus("0");
-        }
-        if (monDevice.getRunStatus() == null) {
-            monDevice.setRunStatus("0");
+        if (monDevice.getIsEnabled() == null) {
+            monDevice.setIsEnabled(1);
         }
         monDevice.setCreateTime(DateUtils.getNowDate());
+        monDevice.setUpdateTime(monDevice.getCreateTime());
         return monDeviceMapper.insertMonDevice(monDevice);
     }
 

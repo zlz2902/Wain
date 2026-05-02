@@ -48,8 +48,8 @@ public class MonRuleCountController extends BaseController {
     @ApiOperation(value = "按规则与设备查询累计行", httpMethod = "GET", response = AppRestResult.class)
     @PreAuthorize("@ss.hasPermi('monitor:ruleCount:query')")
     @GetMapping("/byRuleDevice")
-    public AppRestResult byRuleDevice(@RequestParam Long ruleId, @RequestParam Long deviceId) {
-        return AppRestResult.success(monRuleCountService.selectByRuleIdAndDeviceId(ruleId, deviceId));
+    public AppRestResult byRuleDevice(@RequestParam Long ruleId, @RequestParam String deviceNo) {
+        return AppRestResult.success(monRuleCountService.selectByRuleIdAndDeviceNo(ruleId, deviceNo));
     }
 
     @ApiOperation(value = "详情", httpMethod = "GET", response = AppRestResult.class)

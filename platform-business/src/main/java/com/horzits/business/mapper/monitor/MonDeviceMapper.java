@@ -2,6 +2,7 @@ package com.horzits.business.mapper.monitor;
 
 import com.horzits.business.domain.MonDevice;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ import java.util.List;
 public interface MonDeviceMapper {
 
     MonDevice selectMonDeviceById(Long deviceId);
+
+    Long selectStationIdByDeviceNo(@Param("deviceNo") String deviceNo);
 
     List<MonDevice> selectMonDeviceList(MonDevice monDevice);
 

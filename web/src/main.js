@@ -23,7 +23,8 @@ import "@/assets/css/index.scss"
 
 import * as filters from '@/directives/filters'
 
-require('./mock/mock')//是否使用mock
+// 联调后端数据库真实数据：勿加载 Mock（需要假数据时再取消注释）
+// require('./mock/mock')
 Vue.config.productionTip = false;
 
 // 自定义组件
