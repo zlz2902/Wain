@@ -1,6 +1,12 @@
 <template>
-  <div class=" home">
-      <img src="../assets/images/home.jpg" width="100%" alt="">
+  <div class="home home-embed" :style="embedWrapStyle">
+    <iframe
+      class="home-iframe"
+      :src="homeEmbedUrl"
+      title="大屏"
+      frameborder="0"
+      allowfullscreen
+    />
   </div>
 </template>
 
@@ -10,8 +16,25 @@ export default {
   data() {
     return {
       // 版本号
-      version: "3.8.7"
+      version: "3.8.7",
+      /** 首页内嵌的大屏地址（与 web 大屏 devServer 端口一致时可改为环境变量） */
+      homeEmbedUrl: "http://localhost:8080/"
     };
+  },
+  computed: {
+    /** 与 layout/components/AppMain.vue 中 min-height 算法一致，占满主内容区可视高度 */
+    embedWrapStyle() {
+      const top = this.$store.state.settings.tagsView ? 84 : 50;
+      const h = `calc(100vh - ${top}px)`;
+      return {
+        width: "100%",
+        height: h,
+        minHeight: h,
+        boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column"
+      };
+    }
   },
   methods: {
     goTarget(href) {
@@ -22,6 +45,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.home-iframe {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  display: block;
+}
+
 .home {
   blockquote {
     padding: 10px 20px;

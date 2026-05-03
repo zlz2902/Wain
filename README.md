@@ -36,7 +36,7 @@
 默认使用 `dev` 配置（见 `platform-admin/src/main/resources/application.yml`）。
 
 - **方式 A：IDE 运行**
-  - 运行启动类 `com.horzits.PlatformApplication`
+  - 运行启动类 `com.smallway.PlatformApplication`
 
 - **方式 B：命令行运行**
 

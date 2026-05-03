@@ -4,10 +4,7 @@ package ${packageName}.domain;
 import ${import};
 #end
 import lombok.Data;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import com.horzits.common.annotation.Excel;
-import com.horzits.common.core.domain.BaseEntity;
+import com.smallway.common.annotation.Excel;
 
 /**
  * ${subTable.functionName}对象 ${subTableName}

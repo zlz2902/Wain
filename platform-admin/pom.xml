@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>platform</artifactId>
-        <groupId>com.horzits</groupId>
+        <groupId>top.smallway</groupId>
         <version>3.8.7</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -46,27 +46,27 @@
 
         <!-- 核心模块-->
         <dependency>
-            <groupId>com.horzits</groupId>
+            <groupId>top.smallway</groupId>
             <artifactId>platform-framework</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.horzits</groupId>
+            <groupId>top.smallway</groupId>
             <artifactId>platform-business</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.horzits</groupId>
+            <groupId>top.smallway</groupId>
             <artifactId>platform-common</artifactId>
         </dependency>
 
         <!-- 定时任务-->
         <dependency>
-            <groupId>com.horzits</groupId>
+            <groupId>top.smallway</groupId>
             <artifactId>platform-quartz</artifactId>
         </dependency>
 
         <!-- 代码生成-->
         <dependency>
-            <groupId>com.horzits</groupId>
+            <groupId>top.smallway</groupId>
             <artifactId>platform-generator</artifactId>
         </dependency>
         <!-- clickHouse数据库 -->

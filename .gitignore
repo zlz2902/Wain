@@ -4,7 +4,7 @@ target/
 **/target/
 
 # IDE local state (never commit)
-.idea/workspace.xml
+.idea/
 
 .vscode/
 .env
@@ -14,3 +14,4 @@ target/
 .env.production.local
 
 .DS_Store
+.idea/misc.xml
