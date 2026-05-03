@@ -3,7 +3,7 @@
 target/
 **/target/
 
-# IDE local state (never commit)
+# IntelliJ IDEA 等 IDE 本地目录（勿提交，避免 pull 冲突）
 .idea/
 
 .vscode/
@@ -14,4 +14,3 @@ target/
 .env.production.local
 
 .DS_Store
-.idea/misc.xml

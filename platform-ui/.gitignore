@@ -1,6 +1,9 @@
 .DS_Store
 node_modules/
 dist/
+# Local npm cache when cache is inside the repo (e.g. npm_config_cache=./npm_cache)
+npm_cache/
+.npm/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

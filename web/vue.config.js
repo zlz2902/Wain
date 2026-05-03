@@ -115,7 +115,8 @@ module.exports = {
   parallel: require('os').cpus().length > 1,
 
   devServer: {
-    // 可选：与 VUE_APP_BASE_API 留空配合使用，避免浏览器跨域；当前默认直连 8089 + 后端已开 CORS
+    // 固定端口，便于 platform-ui 首页 iframe（.env.development 里 VUE_APP_HOME_EMBED_URL）对齐
+    port: 9528,
     proxy: {
       '/bigscreen': {
         target: 'http://localhost:8089',

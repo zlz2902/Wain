@@ -637,6 +637,34 @@ INSERT INTO `sys_menu` VALUES (1058, '导入代码', 116, 4, '#', '', '', 1, 0, 
 INSERT INTO `sys_menu` VALUES (1059, '预览代码', 116, 5, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:preview', '#', 'admin', '2025-01-21 14:11:05', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1060, '生成代码', 116, 6, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:code', '#', 'admin', '2025-01-21 14:11:05', '', NULL, '');
 
+-- 监控告警规则引擎业务菜单（platform-ui: bizMonitor/*，menu_id 紧接 1060）
+INSERT INTO `sys_menu` VALUES (1061, '监控业务', 0, 5, 'bizMonitor', NULL, '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2026-05-02 20:00:00', '', NULL, '异常告警业务目录');
+INSERT INTO `sys_menu` VALUES (1062, '设备档案', 1061, 1, 'device', 'bizMonitor/device/index', '', 1, 0, 'C', '0', '0', 'monitor:device:list', 'server', 'admin', '2026-05-02 20:00:00', '', NULL, 'device_info');
+INSERT INTO `sys_menu` VALUES (1063, '设备查询', 1062, 1, '', '', '', 1, 0, 'F', '0', '0', 'monitor:device:query', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1064, '设备新增', 1062, 2, '', '', '', 1, 0, 'F', '0', '0', 'monitor:device:add', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1065, '设备修改', 1062, 3, '', '', '', 1, 0, 'F', '0', '0', 'monitor:device:edit', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1066, '设备删除', 1062, 4, '', '', '', 1, 0, 'F', '0', '0', 'monitor:device:remove', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1067, '告警规则', 1061, 2, 'monRule', 'bizMonitor/rule/index', '', 1, 0, 'C', '0', '0', 'monitor:rule:list', 'documentation', 'admin', '2026-05-02 20:00:00', '', NULL, 'rules_table');
+INSERT INTO `sys_menu` VALUES (1068, '规则查询', 1067, 1, '', '', '', 1, 0, 'F', '0', '0', 'monitor:rule:query', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1069, '规则新增', 1067, 2, '', '', '', 1, 0, 'F', '0', '0', 'monitor:rule:add', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1070, '规则修改', 1067, 3, '', '', '', 1, 0, 'F', '0', '0', 'monitor:rule:edit', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1071, '规则删除', 1067, 4, '', '', '', 1, 0, 'F', '0', '0', 'monitor:rule:remove', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1072, '阈值明细', 1061, 3, 'ruleThreshold', 'bizMonitor/ruleThreshold/index', '', 1, 0, 'C', '0', '0', 'monitor:threshold:list', 'slider', 'admin', '2026-05-02 20:00:00', '', NULL, 'threshold_rule_table');
+INSERT INTO `sys_menu` VALUES (1073, '阈值查询', 1072, 1, '', '', '', 1, 0, 'F', '0', '0', 'monitor:threshold:query', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1074, '阈值新增', 1072, 2, '', '', '', 1, 0, 'F', '0', '0', 'monitor:threshold:add', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1075, '阈值修改', 1072, 3, '', '', '', 1, 0, 'F', '0', '0', 'monitor:threshold:edit', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1076, '阈值删除', 1072, 4, '', '', '', 1, 0, 'F', '0', '0', 'monitor:threshold:remove', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1077, '异常累计', 1061, 4, 'ruleCount', 'bizMonitor/ruleCount/index', '', 1, 0, 'C', '0', '0', 'monitor:ruleCount:list', 'chart', 'admin', '2026-05-02 20:00:00', '', NULL, 'alarm_count_table');
+INSERT INTO `sys_menu` VALUES (1078, '累计查询', 1077, 1, '', '', '', 1, 0, 'F', '0', '0', 'monitor:ruleCount:query', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1079, '累计新增', 1077, 2, '', '', '', 1, 0, 'F', '0', '0', 'monitor:ruleCount:add', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1080, '累计修改', 1077, 3, '', '', '', 1, 0, 'F', '0', '0', 'monitor:ruleCount:edit', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1081, '累计删除', 1077, 4, '', '', '', 1, 0, 'F', '0', '0', 'monitor:ruleCount:remove', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1082, '告警记录', 1061, 5, 'alarmRecord', 'bizMonitor/alarmRecord/index', '', 1, 0, 'C', '0', '0', 'monitor:alarm:list', 'message', 'admin', '2026-05-02 20:00:00', '', NULL, 'rules_alarm_log');
+INSERT INTO `sys_menu` VALUES (1083, '告警查询', 1082, 1, '', '', '', 1, 0, 'F', '0', '0', 'monitor:alarm:query', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1084, '告警新增', 1082, 2, '', '', '', 1, 0, 'F', '0', '0', 'monitor:alarm:add', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1085, '告警处置', 1082, 3, '', '', '', 1, 0, 'F', '0', '0', 'monitor:alarm:edit', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (1086, '告警删除', 1082, 4, '', '', '', 1, 0, 'F', '0', '0', 'monitor:alarm:remove', '#', 'admin', '2026-05-02 20:00:00', '', NULL, '');
+
 -- ----------------------------
 -- Table structure for sys_notice
 -- ----------------------------
@@ -862,6 +890,32 @@ INSERT INTO `sys_role_menu` VALUES (2, 1057);
 INSERT INTO `sys_role_menu` VALUES (2, 1058);
 INSERT INTO `sys_role_menu` VALUES (2, 1059);
 INSERT INTO `sys_role_menu` VALUES (2, 1060);
+INSERT INTO `sys_role_menu` VALUES (2, 1061);
+INSERT INTO `sys_role_menu` VALUES (2, 1062);
+INSERT INTO `sys_role_menu` VALUES (2, 1063);
+INSERT INTO `sys_role_menu` VALUES (2, 1064);
+INSERT INTO `sys_role_menu` VALUES (2, 1065);
+INSERT INTO `sys_role_menu` VALUES (2, 1066);
+INSERT INTO `sys_role_menu` VALUES (2, 1067);
+INSERT INTO `sys_role_menu` VALUES (2, 1068);
+INSERT INTO `sys_role_menu` VALUES (2, 1069);
+INSERT INTO `sys_role_menu` VALUES (2, 1070);
+INSERT INTO `sys_role_menu` VALUES (2, 1071);
+INSERT INTO `sys_role_menu` VALUES (2, 1072);
+INSERT INTO `sys_role_menu` VALUES (2, 1073);
+INSERT INTO `sys_role_menu` VALUES (2, 1074);
+INSERT INTO `sys_role_menu` VALUES (2, 1075);
+INSERT INTO `sys_role_menu` VALUES (2, 1076);
+INSERT INTO `sys_role_menu` VALUES (2, 1077);
+INSERT INTO `sys_role_menu` VALUES (2, 1078);
+INSERT INTO `sys_role_menu` VALUES (2, 1079);
+INSERT INTO `sys_role_menu` VALUES (2, 1080);
+INSERT INTO `sys_role_menu` VALUES (2, 1081);
+INSERT INTO `sys_role_menu` VALUES (2, 1082);
+INSERT INTO `sys_role_menu` VALUES (2, 1083);
+INSERT INTO `sys_role_menu` VALUES (2, 1084);
+INSERT INTO `sys_role_menu` VALUES (2, 1085);
+INSERT INTO `sys_role_menu` VALUES (2, 1086);
 
 -- ----------------------------
 -- Table structure for sys_user

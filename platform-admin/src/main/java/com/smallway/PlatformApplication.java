@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
- * ��������
+ * 启动程序
  *
  * @author horzits
  */
@@ -20,7 +20,7 @@ public class PlatformApplication
     {
         // System.setProperty("spring.devtools.restart.enabled", "false");
         SpringApplication.run(PlatformApplication.class, args);
-        System.out.println("(????)??  �����ɹ�   ?(??`?)?  \n" +
+        System.out.println("(♥◠‿◠)ﾉﾞ  启动成功   ლ(´ڡ`ლ)  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +
                 " | ( ' )  |       \\  _. /  '       \n" +

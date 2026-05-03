@@ -17,8 +17,8 @@ export default {
     return {
       // 版本号
       version: "3.8.7",
-      /** 首页内嵌的大屏地址（与 web 大屏 devServer 端口一致时可改为环境变量） */
-      homeEmbedUrl: "http://localhost:8080/"
+      /** 必须与 newWork/web 的 devServer 端口一致，不可指向 platform-ui 自己（8080/80）否则会无限嵌套 */
+      homeEmbedUrl: process.env.VUE_APP_HOME_EMBED_URL || "http://localhost:9528/"
     };
   },
   computed: {
