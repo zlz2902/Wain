@@ -1,7 +1,7 @@
 {
   "name": "platform-ui",
   "version": "3.8.7",
-  "description": "管理平台",
+  "description": "监控类软件异常告警规则引擎前端",
   "author": "horzits",
   "license": "MIT",
   "scripts": {

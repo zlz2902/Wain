@@ -3,7 +3,7 @@
     <div class="left-board">
       <div class="logo-wrapper">
         <div class="logo">
-          <img :src="logo" alt="logo"> Form Generator
+          <span class="logo-mark"><brand-mark /></span> Form Generator
         </div>
       </div>
       <el-scrollbar class="left-scrollbar">
@@ -147,9 +147,9 @@ import { makeUpHtml, vueTemplate, vueScript, cssStyle } from '@/utils/generator/
 import { makeUpJs } from '@/utils/generator/js'
 import { makeUpCss } from '@/utils/generator/css'
 import drawingDefault from '@/utils/generator/drawingDefault'
-import logo from '@/assets/logo/logo.png'
 import CodeTypeDialog from './CodeTypeDialog'
 import DraggableItem from './DraggableItem'
+import BrandMark from '@/components/BrandMark'
 
 let oldActiveId
 let tempActiveData
@@ -160,11 +160,11 @@ export default {
     render,
     RightPanel,
     CodeTypeDialog,
-    DraggableItem
+    DraggableItem,
+    BrandMark
   },
   data() {
     return {
-      logo,
       idGlobal: 100,
       formConf,
       inputComponents,
@@ -613,7 +613,9 @@ $lighterBlue: #409EFF;
   font-weight: 600;
   font-size: 17px;
   white-space: nowrap;
-  > img{
+  > img,
+  > .logo-mark{
+    display: inline-block;
     width: 30px;
     height: 30px;
     vertical-align: top;

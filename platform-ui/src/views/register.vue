@@ -1,7 +1,10 @@
 <template>
   <div class="register">
     <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="register-form">
-      <h3 class="title">管理平台</h3>
+      <div class="register-brand">
+        <div class="register-logo"><brand-mark /></div>
+        <h3 class="title">{{ systemTitle }}</h3>
+      </div>
       <el-form-item prop="username">
         <el-input v-model="registerForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -68,9 +71,11 @@
 
 <script>
 import { getCodeImg, register } from "@/api/login";
+import BrandMark from '@/components/BrandMark'
 
 export default {
   name: "Register",
+  components: { BrandMark },
   data() {
     const equalToPassword = (rule, value, callback) => {
       if (this.registerForm.password !== value) {
@@ -80,6 +85,7 @@ export default {
       }
     };
     return {
+      systemTitle: process.env.VUE_APP_TITLE,
       codeUrl: "",
       registerForm: {
         username: "",
@@ -155,8 +161,16 @@ export default {
   background-image: url("../assets/images/login-background.jpg");
   background-size: cover;
 }
+.register-brand {
+  text-align: center;
+  .register-logo {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 12px;
+  }
+}
 .title {
-  margin: 0px auto 30px auto;
+  margin: 0 auto 28px;
   text-align: center;
   color: #707070;
 }

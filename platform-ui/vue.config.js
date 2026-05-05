@@ -7,7 +7,7 @@ function resolve(dir) {
 
 const CompressionPlugin = require('compression-webpack-plugin')
 
-const name = process.env.VUE_APP_TITLE || '基础平台' // 网页标题
+const name = process.env.VUE_APP_TITLE || '异常告警规则引擎' // 网页标题
 
 const port = process.env.port || process.env.npm_config_port || 8080 // 与管理端常用端口一致；勿与下方大屏 iframe 同端口
 
