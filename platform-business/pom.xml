@@ -44,6 +44,12 @@
             <artifactId>hibernate-annotations</artifactId>
             <version>3.3.1.GA</version>
         </dependency>
+
+        <!-- 外部告警/报文 TCP 接入（与 Tomcat HTTP 端口分离） -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

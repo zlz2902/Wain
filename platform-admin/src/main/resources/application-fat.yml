@@ -297,3 +297,15 @@ jeecg:
     #接口超时设置（毫秒）
     connect-timeout: 300000
 
+# Netty 告警报文接入默认关闭（需要时在对应 profile 打开）
+ingest:
+  netty:
+    enabled: false
+
+# 规则引擎：生产环境默认关闭，避免未审查的阈值在业务库自动写告警
+monitor:
+  rule-engine:
+    enabled: false
+    interval-ms: 15000
+    alarm-cooldown-seconds: 300
+

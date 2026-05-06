@@ -44,6 +44,13 @@
         order by id desc
     </select>
 
+    <select id="countAlarmsSince" resultType="int">
+        select count(*) from rules_alarm_log
+        where device_no = #{deviceNo}
+          and rule_id = #{ruleId}
+          and alarm_time &gt;= #{since}
+    </select>
+
     <insert id="insertMonAlarmRecord" parameterType="MonAlarmRecord" useGeneratedKeys="true" keyProperty="alarmId">
         insert into rules_alarm_log
         (device_no, station_id, rule_id, alarm_level, alarm_type, alarm_name, alarm_value, alarm_detail,

@@ -250,6 +250,27 @@ jeecg:
           - 594
     #接口超时设置（毫秒）
     connect-timeout: 300000
+# 阈值规则引擎：读 device_runtime_status + 阈值规则，维护 alarm_count_table，达标写 rules_alarm_log
+monitor:
+  rule-engine:
+    enabled: true
+    interval-ms: 15000
+    # 同一设备+同一规则在此时间内最多写一条告警，避免连续次数=1 时每轮刷屏；0=关闭冷却
+    alarm-cooldown-seconds: 300
+
+# 外部告警报文 TCP 接入（Netty，与 server.port 分离；单行 JSON + 换行符）
+ingest:
+  netty:
+    enabled: true
+    bind-address: 0.0.0.0
+    port: 9010
+    boss-threads: 1
+    worker-threads: 0
+    max-frame-length: 65536
+    business-core-pool-size: 4
+    business-max-pool-size: 32
+    business-queue-capacity: 1000
+
 #农业平台md5秘钥
 amgw:
   am_pw_des_key_user_acc: apoidsfupaoidfdd

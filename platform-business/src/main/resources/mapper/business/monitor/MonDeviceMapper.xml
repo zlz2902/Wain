@@ -33,6 +33,18 @@
         where id = #{deviceId} and is_enabled = 1
     </select>
 
+    <select id="selectRuntimeSnapshots" resultType="com.smallway.business.domain.DeviceRuntimeSnapshot">
+        select d.device_no   as deviceNo,
+               d.station_id  as stationId,
+               r.current_temp as currentTemp,
+               r.current_humi as currentHumi,
+               r.current_pres as currentPres
+        from device_info d
+                 left join device_runtime_status r on r.device_no = d.device_no
+        where d.is_enabled = 1
+        order by d.id asc
+    </select>
+
     <select id="selectMonDeviceList" parameterType="MonDevice" resultMap="MonDeviceResult">
         <include refid="selectMonDeviceVo"/>
         <where>
