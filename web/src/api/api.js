@@ -16,14 +16,22 @@ axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么 传token
     let token = localStorage.getItem("token");
     if (!token) {
-        const match = window.location.search.match(/[?&]token=([^&]+)/);
+        const searchMatch = window.location.search.match(/[?&]token=([^&]+)/);
+        const hashMatch = window.location.hash.match(/[?&]token=([^&]+)/);
+        const match = searchMatch || hashMatch;
         if (match && match[1]) {
             token = decodeURIComponent(match[1]);
             localStorage.setItem('token', token);
         }
     }
     config.headers.common['Content-Type'] = "application/json;charset=utf-8";
-    config.headers.common['token'] = token;  //Authorization
+    if (token) {
+        const bearerToken = token.startsWith('Bearer ') ? token : 'Bearer ' + token;
+        config.headers.common['token'] = token;
+        config.headers.common['Authorization'] = bearerToken;
+        config.headers['token'] = token;
+        config.headers['Authorization'] = bearerToken;
+    }
     return config;
 }, function (error) {
     // 对请求错误做些什么

@@ -121,6 +121,18 @@ module.exports = {
       '/bigscreen': {
         target: 'http://localhost:8089',
         changeOrigin: true
+      },
+      '/getChartPerms': {
+        target: 'http://localhost:8089',
+        changeOrigin: true
+      },
+      '/getInfo': {
+        target: 'http://localhost:8089',
+        changeOrigin: true
+      },
+      '/login': {
+        target: 'http://localhost:8089',
+        changeOrigin: true
       }
     }
   },

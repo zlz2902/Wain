@@ -2,7 +2,7 @@
   <div class="home home-embed" :style="embedWrapStyle">
     <iframe
       class="home-iframe"
-      :src="homeEmbedUrlWithToken"
+      :src="homeEmbedUrlWithChartPerms"
       title="大屏"
       frameborder="0"
       allowfullscreen
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { getToken } from '@/utils/auth'
 
 export default {
   name: "Index",
@@ -24,13 +23,36 @@ export default {
     };
   },
   computed: {
-    homeEmbedUrlWithToken() {
-      const token = getToken();
-      if (!token) {
-        return this.homeEmbedUrl;
+    homeEmbedUrlWithChartPerms() {
+      let perms = [];
+      const storePerms = this.$store.getters.permissions || [];
+      if (Array.isArray(storePerms) && storePerms.length > 0) {
+        perms = storePerms;
+      } else {
+        try {
+          perms = JSON.parse(localStorage.getItem('chartPerms') || '[]');
+        } catch (e) {
+          perms = [];
+        }
+      }
+      perms = Array.isArray(perms)
+        ? perms.filter(item => typeof item === 'string' && (item.indexOf('dashboard:chart:') === 0 || item === '*:*:*'))
+        : [];
+      // 作者：Smallway，2026-05-13
+      // 兼容超级管理员权限，确保其能够查看大屏所有图表
+      if (perms.includes('*:*:*')) {
+        perms.push('dashboard:chart:*');
+      }
+      const encodedPerms = encodeURIComponent(JSON.stringify(perms));
+      const hashIndex = this.homeEmbedUrl.indexOf('#');
+      if (hashIndex !== -1) {
+        const base = this.homeEmbedUrl.slice(0, hashIndex);
+        const hash = this.homeEmbedUrl.slice(hashIndex);
+        const joiner = hash.includes('?') ? '&' : '?';
+        return `${base}${joiner}chartPerms=${encodedPerms}${hash}`;
       }
       const joiner = this.homeEmbedUrl.includes('?') ? '&' : '?';
-      return `${this.homeEmbedUrl}${joiner}token=${encodeURIComponent(token)}`;
+      return `${this.homeEmbedUrl}${joiner}chartPerms=${encodedPerms}`;
     },
     /** 与 layout/components/AppMain.vue 中 min-height 算法一致，占满主内容区可视高度 */
     embedWrapStyle() {

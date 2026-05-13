@@ -78,6 +78,10 @@ public class SysLoginController
     @GetMapping("getChartPerms")
     public AjaxResult getChartPerms()
     {
+        if (SecurityUtils.getLoginUser() == null || SecurityUtils.getLoginUser().getUser() == null)
+        {
+            return AjaxResult.success(new java.util.HashSet<String>());
+        }
         SysUser user = SecurityUtils.getLoginUser().getUser();
         return AjaxResult.success(permissionService.getChartPermissions(user));
     }
