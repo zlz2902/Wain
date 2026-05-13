@@ -250,6 +250,187 @@
 
 > 目标：保证大屏所有接口（big1~big8，big6=拓扑）都能从数据库中**稳定取数**，避免“字段缺失/口径不一致/地域维度对不上/拓扑无数据”。
 
+### 1.0 数据库 ER 图（PlantUML，对应 1.1～1.11）
+
+以下源码与仓库内 **`docs/database-er.puml`** 一致。可用 PlantUML 插件、或命令 `plantuml docs/database-er.puml` 生成 PNG/SVG；亦可使用 [PlantUML 在线服务](https://www.plantuml.com/plantuml/uml) 粘贴渲染。
+
+```plantuml
+@startuml Wain_Database_ER_1_1_to_1_11
+!theme plain
+skinparam shadowing false
+skinparam roundcorner 6
+skinparam linetype ortho
+hide circle
+left to right direction
+
+title 数据库 ER 图（第 1.1～1.11 节）
+
+entity "1.1 station_info\n站点信息" as station {
+  * id : bigint <<PK>>
+  --
+  * station_no : varchar <<UK>>
+  * station_name : varchar
+  region_code : varchar
+  region_name : varchar
+  province : varchar
+  city : varchar
+  county : varchar
+  longitude : decimal
+  latitude : decimal
+  location_desc : varchar
+  is_enabled : tinyint
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "1.2 device_info\n设备信息" as device {
+  * id : bigint <<PK>>
+  --
+  * device_no : varchar <<UK>>
+  gatewayno : varchar
+  * device_name : varchar
+  device_type : varchar
+  terminalno : varchar
+  * station_id : bigint <<FK>>
+  owner : varchar
+  install_date : datetime
+  is_enabled : tinyint
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "1.3 device_runtime_status\n设备运行状态" as runtime {
+  * device_no : varchar <<PK,FK>>
+  --
+  current_temp : double
+  current_humi : double
+  current_pres : double
+  run_status : int
+  last_update_time : datetime
+}
+
+entity "1.4 device_event_log\n设备事件流水" as evt {
+  * id : bigint <<PK>>
+  --
+  device_no : varchar <<FK>>
+  station_id : bigint <<FK>>
+  event_type : varchar
+  online_state : tinyint
+  event_time : datetime
+  ext_json : text
+}
+
+entity "1.5 rules_table\n告警规则总表" as rule {
+  * rule_id : bigint <<PK>>
+  --
+  * rule_name : varchar
+  * scene_type : int
+  is_enabled : tinyint
+  alarm_level : int
+  accumulate_count : int
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "1.6 threshold_rule_table\n阈值规则明细" as thresh {
+  * id : bigint <<PK>>
+  --
+  * rule_id : bigint <<FK>>
+  * resource_type : varchar
+  min_value : double
+  max_value : double
+}
+
+entity "1.7 rules_alarm_log\n告警日志" as alog {
+  * id : bigint <<PK>>
+  --
+  device_no : varchar <<FK>>
+  station_id : bigint <<FK>>
+  rule_id : bigint <<FK>>
+  alarm_level : int
+  alarm_type : varchar
+  alarm_name : varchar
+  alarm_value : double
+  alarm_detail : varchar
+  phase : varchar
+  sb_info : varchar
+  alarm_time : datetime
+  is_handled : tinyint
+}
+
+entity "1.8 alarm_count_table\n异常累计计数" as acnt {
+  * id : bigint <<PK>>
+  --
+  device_no : varchar <<FK>>
+  rule_id : bigint <<FK>>
+  current_count : int
+  last_check_time : datetime
+}
+
+entity "1.9 topology_node\n拓扑节点" as tnode {
+  * id : bigint <<PK>>
+  --
+  * station_id : bigint <<FK>>
+  * node_id : varchar <<UK>>
+  * node_name : varchar
+  * node_type : varchar
+  device_no : varchar
+  sort_no : int
+  ext_json : text
+}
+
+entity "1.10 topology_link\n拓扑连边" as tlink {
+  * id : bigint <<PK>>
+  --
+  * station_id : bigint <<FK>>
+  * source_node_id : varchar
+  * target_node_id : varchar
+  * link_type : varchar
+  label : varchar
+  is_enabled : tinyint
+  ext_json : text
+}
+
+entity "1.11 bigscreen_metric_snapshot\n大屏指标快照" as snap {
+  * id : bigint <<PK>>
+  --
+  * scope_type : varchar
+  scope_key : varchar
+  temperature : double
+  humidity : double
+  pressure : double
+  snapshot_time : datetime
+}
+
+station ||--o{ device : "站点-设备"
+station ||--o{ evt : "站点-事件"
+device  ||--o{ evt : "设备-事件"
+device  ||--|| runtime : "1:1 运行态"
+
+station ||--o{ alog : "冗余站点"
+device  ||--o{ alog : "告警设备"
+rule    ||--o{ alog : "触发规则"
+
+rule    ||--o{ thresh : "规则-阈值明细"
+rule    ||--o{ acnt : "规则-累计"
+device  ||--o{ acnt : "设备-累计"
+
+station ||--o{ tnode : "站点-拓扑节点"
+device  }o--o{ tnode : "可选绑定设备"
+station ||--o{ tlink : "站点-拓扑边"
+
+note bottom of tlink
+  topology_link.source_node_id / target_node_id
+  逻辑对应 topology_node.node_id
+end note
+
+note bottom of snap
+  聚合快照表，scope_key 与 station_no 或常量约定对应
+end note
+
+@enduml
+```
+
 ### 1.1 站点信息表 `station_info`
 
 用于：big8 地图聚合/下钻、big3/big5 省市区展示、拓扑按站点查询。

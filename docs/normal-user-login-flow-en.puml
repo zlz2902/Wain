@@ -1,0 +1,41 @@
+@startuml
+title Normal user login (simplified)
+
+skinparam ActivityBackgroundColor #FFFFFF
+skinparam ActivityBorderColor #444444
+
+start
+
+:Open admin web;
+
+if (Token in Cookie?) then (no)
+  :Go to login page;
+else (yes)
+  :Enter main UI;
+  stop
+endif
+
+:Enter username and password;\nenter captcha if enabled;
+
+:Click Login;
+
+:Call backend login API;
+
+if (Login OK?) then (no)
+  :Show error;
+  stop
+endif
+
+:Save token to Cookie;
+
+:Go to home (or redirect URL);
+
+:Call /getInfo;
+
+:Build menus and routes from roles;
+
+:Show pages allowed for this user;
+
+stop
+
+@enduml

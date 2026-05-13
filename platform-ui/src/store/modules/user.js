@@ -63,8 +63,10 @@ const user = {
           if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
             commit('SET_ROLES', res.roles)
             commit('SET_PERMISSIONS', res.permissions)
+            localStorage.setItem('chartPerms', JSON.stringify(Array.from(res.permissions || []).filter(item => item && item.indexOf('dashboard:chart:') === 0)))
           } else {
             commit('SET_ROLES', ['ROLE_DEFAULT'])
+            localStorage.setItem('chartPerms', JSON.stringify([]))
           }
           commit('SET_ID', user.userId)
           commit('SET_NAME', user.userName)
@@ -84,6 +86,7 @@ const user = {
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
           commit('SET_PERMISSIONS', [])
+          localStorage.removeItem('chartPerms')
           removeToken()
           resolve()
         }).catch(error => {

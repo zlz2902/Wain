@@ -1,0 +1,176 @@
+@startuml Wain_Database_ER_1_1_to_1_11
+!theme plain
+skinparam shadowing false
+skinparam roundcorner 6
+skinparam linetype ortho
+hide circle
+left to right direction
+
+title ????? ER ?????? Database_Design_Specification ?? 1.1??1.11 ???
+
+entity "1.1 station_info\n??????" as station {
+  * id : bigint <<PK>>
+  --
+  * station_no : varchar <<UK>>
+  * station_name : varchar
+  region_code : varchar
+  region_name : varchar
+  province : varchar
+  city : varchar
+  county : varchar
+  longitude : decimal
+  latitude : decimal
+  location_desc : varchar
+  is_enabled : tinyint
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "1.2 device_info\n?��???" as device {
+  * id : bigint <<PK>>
+  --
+  * device_no : varchar <<UK>>
+  gatewayno : varchar
+  * device_name : varchar
+  device_type : varchar
+  terminalno : varchar
+  * station_id : bigint <<FK>>
+  owner : varchar
+  install_date : datetime
+  is_enabled : tinyint
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "1.3 device_runtime_status\n?��??????" as runtime {
+  * device_no : varchar <<PK,FK>>
+  --
+  current_temp : double
+  current_humi : double
+  current_pres : double
+  run_status : int
+  last_update_time : datetime
+}
+
+entity "1.4 device_event_log\n?��??????" as evt {
+  * id : bigint <<PK>>
+  --
+  device_no : varchar <<FK>>
+  station_id : bigint <<FK>>
+  event_type : varchar
+  online_state : tinyint
+  event_time : datetime
+  ext_json : text
+}
+
+entity "1.5 rules_table\n?��???????" as rule {
+  * rule_id : bigint <<PK>>
+  --
+  * rule_name : varchar
+  * scene_type : int
+  is_enabled : tinyint
+  alarm_level : int
+  accumulate_count : int
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "1.6 threshold_rule_table\n??????????" as thresh {
+  * id : bigint <<PK>>
+  --
+  * rule_id : bigint <<FK>>
+  * resource_type : varchar
+  min_value : double
+  max_value : double
+}
+
+entity "1.7 rules_alarm_log\n?��???" as alog {
+  * id : bigint <<PK>>
+  --
+  device_no : varchar <<FK>>
+  station_id : bigint <<FK>>
+  rule_id : bigint <<FK>>
+  alarm_level : int
+  alarm_type : varchar
+  alarm_name : varchar
+  alarm_value : double
+  alarm_detail : varchar
+  phase : varchar
+  sb_info : varchar
+  alarm_time : datetime
+  is_handled : tinyint
+}
+
+entity "1.8 alarm_count_table\n????????" as acnt {
+  * id : bigint <<PK>>
+  --
+  device_no : varchar <<FK>>
+  rule_id : bigint <<FK>>
+  current_count : int
+  last_check_time : datetime
+}
+
+entity "1.9 topology_node\n??????" as tnode {
+  * id : bigint <<PK>>
+  --
+  * station_id : bigint <<FK>>
+  * node_id : varchar <<UK>>
+  * node_name : varchar
+  * node_type : varchar
+  device_no : varchar
+  sort_no : int
+  ext_json : text
+}
+
+entity "1.10 topology_link\n????????" as tlink {
+  * id : bigint <<PK>>
+  --
+  * station_id : bigint <<FK>>
+  * source_node_id : varchar
+  * target_node_id : varchar
+  * link_type : varchar
+  label : varchar
+  is_enabled : tinyint
+  ext_json : text
+}
+
+entity "1.11 bigscreen_metric_snapshot\n??????????" as snap {
+  * id : bigint <<PK>>
+  --
+  * scope_type : varchar
+  scope_key : varchar
+  temperature : double
+  humidity : double
+  pressure : double
+  snapshot_time : datetime
+}
+
+' ---------- ??? ----------
+station ||--o{ device : "???-?��"
+station ||--o{ evt : "???-???"
+device  ||--o{ evt : "?��-???"
+device  ||--|| runtime : "1:1 ?????"
+
+station ||--o{ alog : "???????"
+device  ||--o{ alog : "?��?��"
+rule    ||--o{ alog : "????????"
+
+rule    ||--o{ thresh : "????-??????"
+rule    ||--o{ acnt : "????-???"
+device  ||--o{ acnt : "?��-???"
+
+station ||--o{ tnode : "???-??????"
+device  }o--o{ tnode : "??????��"
+station ||--o{ tlink : "???-?????"
+
+note bottom of tlink
+  **topology_link** ?? source_node_id / target_node_id
+  ?????? **topology_node.node_id**????��????????????
+end note
+
+note bottom of snap
+  **bigscreen_metric_snapshot** ????????
+  scope_key ???? station_no ???? ALL ?????????????????
+end note
+
+@enduml

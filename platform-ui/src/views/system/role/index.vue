@@ -200,6 +200,27 @@
         <el-form-item label="备注">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
         </el-form-item>
+        <el-form-item label="大屏图表权限">
+          <el-select
+            v-model="chartPerms"
+            multiple
+            filterable
+            allow-create
+            default-first-option
+            placeholder="选择或输入图表权限标识"
+            style="width: 100%"
+          >
+            <el-option
+              v-for="item in chartPermOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+          <div class="chart-perm-tip">
+            将选择结果写入角色备注 remark 的 JSON 中，格式为 <code>{"chartPerms": ["dashboard:chart:xxx"]}</code>
+          </div>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -321,6 +342,18 @@ export default {
         roleKey: undefined,
         status: undefined
       },
+      chartPerms: [],
+      // 图表权限选项
+      chartPermOptions: [
+        { value: 'dashboard:chart:user-overview', label: '用户总览' },
+        { value: 'dashboard:chart:device-overview', label: '设备总览' },
+        { value: 'dashboard:chart:device-tips', label: '设备提醒' },
+        { value: 'dashboard:chart:alarm-count', label: '报警次数' },
+        { value: 'dashboard:chart:alarm-ranking', label: '报警排名' },
+        { value: 'dashboard:chart:realtime-warning', label: '实时预警' },
+        { value: 'dashboard:chart:topology', label: '拓扑图' },
+        { value: 'dashboard:chart:map', label: '中间地图' }
+      ],
       // 表单参数
       form: {},
       defaultProps: {
@@ -423,6 +456,7 @@ export default {
       this.menuNodeAll = false,
       this.deptExpand = true,
       this.deptNodeAll = false,
+      this.chartPerms = [];
       this.form = {
         roleId: undefined,
         roleName: undefined,
@@ -511,6 +545,7 @@ export default {
       const roleMenu = this.getRoleMenuTreeselect(roleId);
       getRole(roleId).then(response => {
         this.form = response.data;
+        this.chartPerms = this.parseChartPerms(this.form.remark);
         this.open = true;
         this.$nextTick(() => {
           roleMenu.then(res => {
@@ -551,10 +586,25 @@ export default {
       const roleId = row.roleId;
       this.$router.push("/system/role-auth/user/" + roleId);
     },
+    parseChartPerms(remark) {
+      if (!remark) {
+        return [];
+      }
+      try {
+        const parsed = JSON.parse(remark);
+        return Array.isArray(parsed.chartPerms) ? parsed.chartPerms : [];
+      } catch (e) {
+        return [];
+      }
+    },
+    buildRemark(chartPerms) {
+      return JSON.stringify({ chartPerms: chartPerms || [] });
+    },
     /** 提交按钮 */
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
+          this.form.remark = this.buildRemark(this.chartPerms);
           if (this.form.roleId != undefined) {
             this.form.menuIds = this.getMenuAllCheckedKeys();
             updateRole(this.form).then(response => {

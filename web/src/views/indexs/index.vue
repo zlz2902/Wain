@@ -8,18 +8,15 @@
 <template>
   <div class="contents">
     <div class="contetn_left">
-      <div class="pagetab">
-        <!-- <div class="item">实时监测</div> -->
-        
-      </div>
-      <ItemWrap class="contetn_left-top contetn_lr-item" title="设备信息总览">
+      <div class="pagetab"></div>
+      <ItemWrap v-if="canShow('dashboard:chart:user-overview')" class="contetn_left-top contetn_lr-item" title="设备信息总览">
         <LeftTop/>
-    
       </ItemWrap>
-      <ItemWrap class="contetn_left-center contetn_lr-item" title="设备状态总览">
+      <ItemWrap v-if="canShow('dashboard:chart:device-overview')" class="contetn_left-center contetn_lr-item" title="设备状态总览">
         <LeftCenter />
       </ItemWrap>
       <ItemWrap
+        v-if="canShow('dashboard:chart:device-tips')"
         class="contetn_left-bottom contetn_lr-item"
         title="设备提醒"
         style="padding: 0 10px 16px 10px"
@@ -28,19 +25,21 @@
       </ItemWrap>
     </div>
     <div class="contetn_center">
-      <CenterMap class="contetn_center_top" />
-      <ItemWrap class="contetn_center-bottom" title="安装计划">
+      <CenterMap v-if="canShow('dashboard:chart:map')" class="contetn_center_top" />
+      <ItemWrap v-if="canShow('dashboard:chart:topology')" class="contetn_center-bottom" title="安装计划">
         <CenterBottom />
       </ItemWrap>
     </div>
     <div class="contetn_right">
       <ItemWrap
+        v-if="canShow('dashboard:chart:alarm-count')"
         class="contetn_left-bottom contetn_lr-item"
         title="报警次数"
       >
         <RightTop />
       </ItemWrap>
       <ItemWrap
+        v-if="canShow('dashboard:chart:alarm-ranking')"
         class="contetn_left-bottom contetn_lr-item"
         title="报警排名(TOP8)"
         style="padding: 0 10px 16px 10px"
@@ -48,6 +47,7 @@
         <RightCenter />
       </ItemWrap>
       <ItemWrap
+        v-if="canShow('dashboard:chart:realtime-warning')"
         class="contetn_left-bottom contetn_lr-item"
         title="数据统计图 "
       >
@@ -80,7 +80,7 @@ export default {
   },
   data() {
     return {
-    
+      chartPerms: []
     };
   },
   filters: {
@@ -89,11 +89,25 @@ export default {
     },
   },
   created() {
+    this.loadChartPerms();
   },
 
   mounted() {},
   methods: {
-  
+    loadChartPerms() {
+      const raw = localStorage.getItem('chartPerms');
+      try {
+        this.chartPerms = raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        this.chartPerms = [];
+      }
+    },
+    canShow(perm) {
+      if (!this.chartPerms || this.chartPerms.length === 0) {
+        return true;
+      }
+      return this.chartPerms.includes(perm);
+    }
   },
 };
 </script>
