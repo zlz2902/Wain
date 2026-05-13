@@ -68,7 +68,18 @@ public class SysLoginController
         ajax.put("user", user);
         ajax.put("roles", roles);
         ajax.put("permissions", permissions);
+        ajax.put("chartPerms", permissionService.getChartPermissions(user));
         return ajax;
+    }
+
+    /**
+     * 获取当前登录用户可见的大屏图表权限
+     */
+    @GetMapping("getChartPerms")
+    public AjaxResult getChartPerms()
+    {
+        SysUser user = SecurityUtils.getLoginUser().getUser();
+        return AjaxResult.success(permissionService.getChartPermissions(user));
     }
 
     /**

@@ -15,6 +15,13 @@ export { baseUrl };
 axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么 传token
     let token = localStorage.getItem("token");
+    if (!token) {
+        const match = window.location.search.match(/[?&]token=([^&]+)/);
+        if (match && match[1]) {
+            token = decodeURIComponent(match[1]);
+            localStorage.setItem('token', token);
+        }
+    }
     config.headers.common['Content-Type'] = "application/json;charset=utf-8";
     config.headers.common['token'] = token;  //Authorization
     return config;

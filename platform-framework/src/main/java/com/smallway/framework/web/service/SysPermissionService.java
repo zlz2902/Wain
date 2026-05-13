@@ -75,13 +75,32 @@ public class SysPermissionService
                     Set<String> rolePerms = menuService.selectMenuPermsByRoleId(role.getRoleId());
                     role.setPermissions(rolePerms);
                     perms.addAll(rolePerms);
-                    perms.addAll(extractChartPerms(role.getRemark()));
                 }
             }
             else
             {
                 perms.addAll(menuService.selectMenuPermsByUserId(user.getUserId()));
             }
+        }
+        return perms;
+    }
+
+    public Set<String> getChartPermissions(SysUser user)
+    {
+        Set<String> perms = new HashSet<String>();
+        if (user.isAdmin())
+        {
+            perms.add("dashboard:chart:*");
+            return perms;
+        }
+        List<SysRole> roles = user.getRoles();
+        if (CollectionUtils.isEmpty(roles))
+        {
+            return perms;
+        }
+        for (SysRole role : roles)
+        {
+            perms.addAll(extractChartPerms(role.getRemark()));
         }
         return perms;
     }

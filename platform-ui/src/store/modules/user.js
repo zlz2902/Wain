@@ -63,7 +63,11 @@ const user = {
           if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
             commit('SET_ROLES', res.roles)
             commit('SET_PERMISSIONS', res.permissions)
-            localStorage.setItem('chartPerms', JSON.stringify(Array.from(res.permissions || []).filter(item => item && item.indexOf('dashboard:chart:') === 0)))
+            const perms = Array.from(res.permissions || [])
+            const chartPerms = perms.includes('*:*:*')
+              ? ['dashboard:chart:*']
+              : perms.filter(item => item && item.indexOf('dashboard:chart:') === 0)
+            localStorage.setItem('chartPerms', JSON.stringify(chartPerms))
           } else {
             commit('SET_ROLES', ['ROLE_DEFAULT'])
             localStorage.setItem('chartPerms', JSON.stringify([]))

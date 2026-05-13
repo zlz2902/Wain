@@ -2,7 +2,7 @@
   <div class="home home-embed" :style="embedWrapStyle">
     <iframe
       class="home-iframe"
-      :src="homeEmbedUrl"
+      :src="homeEmbedUrlWithToken"
       title="大屏"
       frameborder="0"
       allowfullscreen
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { getToken } from '@/utils/auth'
+
 export default {
   name: "Index",
   data() {
@@ -22,6 +24,14 @@ export default {
     };
   },
   computed: {
+    homeEmbedUrlWithToken() {
+      const token = getToken();
+      if (!token) {
+        return this.homeEmbedUrl;
+      }
+      const joiner = this.homeEmbedUrl.includes('?') ? '&' : '?';
+      return `${this.homeEmbedUrl}${joiner}token=${encodeURIComponent(token)}`;
+    },
     /** 与 layout/components/AppMain.vue 中 min-height 算法一致，占满主内容区可视高度 */
     embedWrapStyle() {
       const top = this.$store.state.settings.tagsView ? 84 : 50;

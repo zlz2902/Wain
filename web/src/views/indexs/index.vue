@@ -9,14 +9,14 @@
   <div class="contents">
     <div class="contetn_left">
       <div class="pagetab"></div>
-      <ItemWrap v-if="canShow('dashboard:chart:user-overview')" class="contetn_left-top contetn_lr-item" title="设备信息总览">
+      <ItemWrap :disabled="!canShow('dashboard:chart:user-overview')" class="contetn_left-top contetn_lr-item" title="设备信息总览">
         <LeftTop/>
       </ItemWrap>
-      <ItemWrap v-if="canShow('dashboard:chart:device-overview')" class="contetn_left-center contetn_lr-item" title="设备状态总览">
+      <ItemWrap :disabled="!canShow('dashboard:chart:device-overview')" class="contetn_left-center contetn_lr-item" title="设备状态总览">
         <LeftCenter />
       </ItemWrap>
       <ItemWrap
-        v-if="canShow('dashboard:chart:device-tips')"
+        :disabled="!canShow('dashboard:chart:device-tips')"
         class="contetn_left-bottom contetn_lr-item"
         title="设备提醒"
         style="padding: 0 10px 16px 10px"
@@ -25,21 +25,21 @@
       </ItemWrap>
     </div>
     <div class="contetn_center">
-      <CenterMap v-if="canShow('dashboard:chart:map')" class="contetn_center_top" />
-      <ItemWrap v-if="canShow('dashboard:chart:topology')" class="contetn_center-bottom" title="安装计划">
+      <CenterMap :disabled="!canShow('dashboard:chart:map')" class="contetn_center_top" />
+      <ItemWrap :disabled="!canShow('dashboard:chart:topology')" class="contetn_center-bottom" title="安装计划">
         <CenterBottom />
       </ItemWrap>
     </div>
     <div class="contetn_right">
       <ItemWrap
-        v-if="canShow('dashboard:chart:alarm-count')"
+        :disabled="!canShow('dashboard:chart:alarm-count')"
         class="contetn_left-bottom contetn_lr-item"
         title="报警次数"
       >
         <RightTop />
       </ItemWrap>
       <ItemWrap
-        v-if="canShow('dashboard:chart:alarm-ranking')"
+        :disabled="!canShow('dashboard:chart:alarm-ranking')"
         class="contetn_left-bottom contetn_lr-item"
         title="报警排名(TOP8)"
         style="padding: 0 10px 16px 10px"
@@ -47,7 +47,7 @@
         <RightCenter />
       </ItemWrap>
       <ItemWrap
-        v-if="canShow('dashboard:chart:realtime-warning')"
+        :disabled="!canShow('dashboard:chart:realtime-warning')"
         class="contetn_left-bottom contetn_lr-item"
         title="数据统计图 "
       >
@@ -66,6 +66,7 @@ import CenterBottom from "./center-bottom.vue";
 import RightTop from "./right-top.vue";
 import RightCenter from "./right-center.vue";
 import RightBottom from "./right-bottom.vue";
+import { getChartPerms } from '@/api/chartPerms'
 
 export default {
   components: {
@@ -90,9 +91,14 @@ export default {
   },
   created() {
     this.loadChartPerms();
+    this.refreshChartPerms();
+    window.addEventListener('storage', this.handleChartPermsChange);
   },
 
   mounted() {},
+  beforeDestroy() {
+    window.removeEventListener('storage', this.handleChartPermsChange);
+  },
   methods: {
     loadChartPerms() {
       const raw = localStorage.getItem('chartPerms');
@@ -102,11 +108,29 @@ export default {
         this.chartPerms = [];
       }
     },
+    refreshChartPerms() {
+      getChartPerms().then(res => {
+        if (res.success) {
+          this.chartPerms = Array.isArray(res.data) ? res.data : [];
+          localStorage.setItem('chartPerms', JSON.stringify(this.chartPerms));
+        } else {
+          this.chartPerms = [];
+          localStorage.setItem('chartPerms', JSON.stringify([]));
+        }
+      }).catch(() => {
+        this.chartPerms = [];
+        localStorage.setItem('chartPerms', JSON.stringify([]));
+      });
+    },
+    handleChartPermsChange() {
+      this.refreshChartPerms();
+      this.$forceUpdate();
+    },
     canShow(perm) {
       if (!this.chartPerms || this.chartPerms.length === 0) {
-        return true;
+        return false;
       }
-      return this.chartPerms.includes(perm);
+      return this.chartPerms.includes('dashboard:chart:*') || this.chartPerms.includes(perm);
     }
   },
 };
